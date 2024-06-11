@@ -58,7 +58,7 @@ export default function Navbar() {
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center">
           {loggedOutNavigation.map(item => (
-            <Link className='py-2 px-4 mr-4 font-light text-white text-glow hover:text-bright-green transition-colors duration-300 ease-in-out' key={item.name} href={item.href || '#'}>
+            <Link className='py-2 px-4 mr-4 font-light text-white text-glow hover:text-bright-green/75 transition-colors duration-500 ease-in-out' key={item.name} href={item.href || '#'}>
               {item.name}
             </Link>
           ))}

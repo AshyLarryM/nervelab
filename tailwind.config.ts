@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import aspectRatio from '@tailwindcss/aspect-ratio';
 
 const config: Config = {
   content: [
@@ -39,9 +40,12 @@ const config: Config = {
       },
       animation: {
         'slide-down': 'slideDown 0.3s ease-out forwards',
+        'slide-down-logo': 'slideDown 1.5s ease-in forwards',
         'slide-up': 'slideUp 0.3s ease-in forwards',
         'fade-in': 'fadeIn 0.3s ease-out forwards',
         'fade-out': 'fadeOut 0.3s ease-in forwards',
+        'fade-in-3': 'fadeIn 3s ease-out forwards'
+
       },
     },
   },

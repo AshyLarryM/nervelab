@@ -16,3 +16,13 @@
 .nav-icon.open {
   transform: rotate(90deg); /* Rotates the icon to give a dynamic feel */
 }
+
+
+.hero-gradient {
+  background: linear-gradient(var(--gradient-angle), #fbdcf4, #ffadec, #f5a1e1, #ff66db, #ff31cf);
+  animation: rotation 3s linear infinite;
+  box-shadow:
+    0 0 8px rgba(245, 195, 244, 0.7),
+    0 0 10px rgba(255, 147, 253, 0.7),
+    0 0 12px rgba(253, 101, 250, 0.7);
+}
