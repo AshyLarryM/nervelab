@@ -69,7 +69,7 @@ const ParticlesComponent = (props) => {
           distance: 350,
           enable: true,
           opacity: 0.3,
-          width: 2,
+          width: 1.5,
         },
         move: {
           direction: "none",
@@ -78,7 +78,7 @@ const ParticlesComponent = (props) => {
             default: "bounce",
           },
           random: true,
-          speed: 1,
+          speed: .75,
           straight: false,
         },
         number: {

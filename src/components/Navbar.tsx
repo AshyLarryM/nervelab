@@ -58,22 +58,40 @@ export default function Navbar() {
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center">
           {loggedOutNavigation.map(item => (
-            <Link className='py-2 px-4 mr-4 font-light hover:text-bright-green' key={item.name} href={item.href || '#'}>
+            <Link className='py-2 px-4 mr-4 font-light text-white text-glow hover:text-bright-green transition-colors duration-300 ease-in-out' key={item.name} href={item.href || '#'}>
               {item.name}
             </Link>
           ))}
         </nav>
 
-        {/* Hamburger menu */}
         <div className="md:hidden absolute top-0 right-0 mr-4" onClick={toggleMenu}>
-          <svg className="h-8 w-8 text-bright-green" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-16 6h16" />
+          <svg
+            className={`h-8 w-8 text-bright-green nav-icon ${isMenuOpen ? 'open' : ''}`}
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            {isMenuOpen ? (
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M6 18L18 6M6 6l12 12"
+              />
+            ) : (
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M4 6h16M4 12h16m-16 6h16"
+              />
+            )}
           </svg>
         </div>
 
         {/* Drop menu */}
         {shouldRenderMenu && (
-          <div className={`absolute w-full top-10 right-0 mt-2 py-2 flex bg-transparent/80 flex-col pb-12 min-h-screen ${isMenuOpen ? 'animate-slide-down' : 'animate-slide-up'}`}>
+          <div className={`absolute w-full top-10 right-0 mt-2 py-2 flex bg-transparent/80 flex-col pb-12 min-h-screen ${isMenuOpen ? 'animate-fade-in' : 'animate-fade-out'}`}>
             {loggedOutNavigation.map(item => (
               <Link className='py-6 px-4 mr-4 font-light hover:text-bright-green text-center text-lg' key={item.name} href={item.href || '#'} onClick={handleLinkClick}>
                 {item.name}

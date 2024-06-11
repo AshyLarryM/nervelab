@@ -1,3 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.text-glow {
+  text-shadow: 0 0 10px #12fc3d;
+}
+
+
+/* Target the SVG element directly for transformation */
+.nav-icon {
+  transition: transform 0.3s ease;
+}
+
+/* Rotate the SVG when the menu is open */
+.nav-icon.open {
+  transform: rotate(90deg); /* Rotates the icon to give a dynamic feel */
+}

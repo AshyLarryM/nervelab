@@ -1,3 +1,4 @@
+import { Hero } from "@/components/landing/Hero";
 import ParticlesComponent from "@/components/particles/Particles";
 
 export default function Home() {
@@ -5,8 +6,7 @@ export default function Home() {
     <>
       <ParticlesComponent />
       <div className="flex justify-center min-h-full text-white z-10">
-
-        Home
+        <Hero />
       </div>
     </>
   );
