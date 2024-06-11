@@ -1,7 +1,11 @@
+import ParticlesComponent from "@/components/particles/Particles";
+
 export default function Home() {
   return (
     <>
-      <div className="flex justify-center min-h-full bg-black text-white">
+      <ParticlesComponent />
+      <div className="flex justify-center min-h-full text-white z-10">
+
         Home
       </div>
     </>
