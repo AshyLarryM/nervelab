@@ -1,8 +1,8 @@
 export default function Home() {
   return (
     <>
-      <div className="min-h-full bg-black text-white">
-        Test
+      <div className="flex justify-center min-h-full bg-black text-white">
+        Home
       </div>
     </>
   );
