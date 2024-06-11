@@ -2,6 +2,10 @@ import React from 'react'
 
 export default function About() {
   return (
-    <div>About</div>
+    <>
+    <div className="flex justify-center min-h-full text-white">
+      About
+    </div>
+  </>
   )
 }
