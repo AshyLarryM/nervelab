@@ -46,7 +46,7 @@ export default function Navbar() {
   }, []);
 
   return (
-    <header className='flex items-center justify-center h-[75px] w-full z-10 bg-transparent text-white'>
+    <header className='flex items-center justify-center h-[75px] w-full z-50 bg-transparent text-white'>
       <div className="relative flex justify-between items-center max-w-screen-xl w-full px-5">
         <Link href="/">
           <div className="flex items-center cursor-pointer">

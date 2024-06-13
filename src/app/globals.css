@@ -6,6 +6,10 @@
   text-shadow: 0 0 10px #12fc3d;
 }
 
+.text-header-glow {
+  text-shadow: 0 0 20px #aa25eddf
+}
+
 
 /* Target the SVG element directly for transformation */
 .nav-icon {
@@ -17,12 +21,31 @@
   transform: rotate(90deg); /* Rotates the icon to give a dynamic feel */
 }
 
+@property --gradient-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes rotation {
+  from { --gradient-angle: 0deg; }
+  to { --gradient-angle: 360deg; }
+}
+
 
 .hero-gradient {
-  background: linear-gradient(var(--gradient-angle), #fbdcf4, #ffadec, #f5a1e1, #ff66db, #ff31cf);
-  animation: rotation 3s linear infinite;
+  background: linear-gradient(var(--gradient-angle), #fbdcf418, #ffadec1c, #91037028, #a825ff18 );
+  animation: rotation 10s linear infinite;
   box-shadow:
-    0 0 8px rgba(245, 195, 244, 0.7),
-    0 0 10px rgba(255, 147, 253, 0.7),
-    0 0 12px rgba(253, 101, 250, 0.7);
+    0 0 12px rgba(250, 200, 249, 0.7),
+    0 0 18px rgba(255, 147, 253, 0.7),
+    0 0 24px rgba(237, 5, 233, 0.7);
+}
+
+.clip-path-left {
+  clip-path: polygon(0 0, 100% 0, 50% 100%, 0 100%);
+}
+
+.clip-path-right {
+  clip-path: polygon(50% 0, 100% 0, 100% 100%, 0 100%);
 }
