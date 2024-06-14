@@ -11,7 +11,7 @@ export function Footer() {
       <div className="w-full">
         <hr className="w-full border-t border-purple-500 hero-gradient" />
         <div className="flex flex-col items-center justify-center h-full py-8">
-          <div className="flex flex-col sm:flex-row justify-center items-center space-y-2 sm:space-y-0 sm:space-x-4 text-xs sm:text-sm font-light text-secondary text-glow cursor-pointer">
+          <div className="z-10 flex flex-col sm:flex-row justify-center items-center space-y-2 sm:space-y-0 sm:space-x-4 text-xs sm:text-sm font-light text-secondary text-glow cursor-pointer">
             <p className="hover:text-white mr-2">
               © 2024 Nerve Lab. All rights Reserved
             </p>

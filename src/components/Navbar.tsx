@@ -47,7 +47,7 @@ export default function Navbar() {
 
   return (
     <header className='flex items-center justify-center h-[75px] w-full z-50 bg-transparent text-white'>
-      <div className="relative flex justify-between items-center max-w-screen-xl w-full px-5">
+      <div className="relative flex justify-between items-center max-w-screen-xl w-full px-5 z-50">
         <Link href="/">
           <div className="flex items-center cursor-pointer">
             <img src="https://picsum.photos/seed/picsum/40" alt="Nerve Lab Logo" className="h-10" />
