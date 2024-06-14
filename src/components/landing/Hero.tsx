@@ -2,16 +2,17 @@ import ParticlesComponent from "../particles/Particles";
 
 export function Hero() {
   return (
-    <div className="">
-      <div className="bg-transparent/40">
+    <div className="lg:w-3/4 h-full px-8 max-w-none">
+      <div className="bg-transparent/40 mt-16">
         <div className=" rounded-lg p-5 border border-purple-500 hero-gradient max-h-full animate-fade-in-3">
-          <div className="p-4">
-            <h1 className="text-white text-3xl mb-4 text-center text-purple animate-slide-down-logo">NerveLab Placeholder</h1>
-            <div className="flex justify-center">
-              <div className="aspect-w-16 aspect-h-9 flex items-center justify-center">
-                <iframe width="1280" height="720" src="https://www.youtube.com/embed/Yz8F5hQf0QA?si=yGbLZnj3ZgN_gg85"
+          <div className="">
+            <h1 className="text-white text-2xl lg:text-3xl mb-4 text-center text-purple animate-slide-down-logo ">NerveLab Placeholder</h1>
+            <div className="">
+              <div className="flex justify-center">
+                <iframe src="https://www.youtube.com/embed/Yz8F5hQf0QA?si=yGbLZnj3ZgN_gg85"
+                  className="sm:w-4/5 w-full aspect-video"
                   title="YouTube video player"
-                  frameBorder="0"
+                  // frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   referrerPolicy="strict-origin-when-cross-origin"
                   allowFullScreen></iframe>
