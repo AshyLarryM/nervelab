@@ -10,7 +10,7 @@ interface NavItem {
 const loggedOutNavigation: NavItem[] = [
   { name: "Home", href: "/" },
   { name: "About", href: "/about" },
-  { name: "Login", href: "/commingsoon" },
+  { name: "Login", href: "/comingsoon" },
 ];
 
 export default function Navbar() {
