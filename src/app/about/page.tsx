@@ -1,10 +1,10 @@
 import ParticlesComponent from '@/components/particles/Particles';
-import React from 'react';
 
 interface AboutProps {
   title: string;
   description: string;
   image: string;
+  reverse?: boolean;
 }
 
 const aboutData: AboutProps[] = [
@@ -25,21 +25,21 @@ const aboutData: AboutProps[] = [
   }
 ];
 
-function About({ title, description, image }: AboutProps) {
+function About({ title, description, image, reverse }: AboutProps) {
   return (
-    <div className="flex items-center justify-center text-white mx-12 mb-16">
+    <div className="flex items-center justify-center text-white mx-8 mb-16">
       <ParticlesComponent />
-      <div className="w-full flex z-50 border border-green-500 nav-gradient-green">
+      <div className={`w-full flex flex-col ${reverse ? 'lg:flex-row-reverse' : 'lg:flex-row'} z-50 border border-green-500 nav-gradient-green`}>
         <div className="flex-1 flex items-center justify-center bg-transparent/40">
           <div className="p-8">
-            <div className='border border-purple-500 hero-gradient p-4 '>
+            <div className='border border-purple-500 hero-gradient p-4'>
               <h2 className="text-2xl font-bold mb-4 text-center">{title}</h2>
-              <p className='text-center'>{description}</p>
+              <p className='text-center font-light'>{description}</p>
             </div>
           </div>
         </div>
         <div className="flex-1 flex items-center justify-center bg-transparent/40 p-8">
-          <img src={image} alt="Descriptive Alt Text" className="w-full h-full object-cover rounded-lg hero-gradient" />
+          <img src={image} alt="Descriptive Alt Text" className="w-96 h-96 object-cover rounded-lg hero-gradient" />
         </div>
       </div>
     </div>
@@ -48,12 +48,12 @@ function About({ title, description, image }: AboutProps) {
 
 export default function AboutPage() {
   return (
-    <div className='z-50'>
+    <div className='z-20 max-w-7xl mx-auto'>
       <div>
-        <h1 className='flex justify-center text-5xl font-semibold text-white text-glow py-8'>Welcome to Nerve Lab</h1>
+        <h1 className='flex justify-center lg:text-5xl text-4xl font-semibold text-white text-glow py-8'>Welcome to Nerve Lab</h1>
       </div>
       {aboutData.map((data, index) => (
-        <About key={index} title={data.title} description={data.description} image={data.image} />
+        <About key={index} title={data.title} description={data.description} image={data.image} reverse={index % 2 !== 0} />
       ))}
     </div>
   );
