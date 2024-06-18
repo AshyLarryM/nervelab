@@ -6,7 +6,7 @@ export default function ComingSoon() {
     <div className='h-screen flex justify-center items-center'>
       <ParticlesComponent />
       <div className=''>
-        <h1 className='text-6xl text-white text-glow z-10'>Coming Soon!</h1>
+        <h1 className='text-6xl text-green-200 text-glow z-10'>Coming Soon!</h1>
       </div>
     </div>
   )
