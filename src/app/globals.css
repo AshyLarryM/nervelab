@@ -43,7 +43,7 @@
 }
 
 .nav-gradient-green {
-  background: linear-gradient(var(--gradient-angle), #0fe835, #12fc3d, #26ff45);
+  background: linear-gradient(var(--gradient-angle), #0fe83716, #12fc3d10, #80f29221);
   animation: rotation 10s linear infinite;
   box-shadow:
     0 0 12px rgba(133, 230, 151, 0.7),
