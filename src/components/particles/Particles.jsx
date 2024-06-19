@@ -78,7 +78,7 @@ const ParticlesComponent = (props) => {
             default: "bounce",
           },
           random: true,
-          speed: .75,
+          speed: 0.75,
           straight: false,
         },
         number: {
@@ -99,11 +99,14 @@ const ParticlesComponent = (props) => {
       },
       detectRetina: true,
     }),
-    [],
+    []
   );
 
-
-  return <Particles id={props.id} init={particlesLoaded} options={options} />; 
+  return (
+    <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: -1 }}>
+      <Particles id={props.id} init={particlesLoaded} options={options} />
+    </div>
+  );
 };
 
 export default ParticlesComponent;

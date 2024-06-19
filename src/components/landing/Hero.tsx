@@ -1,7 +1,7 @@
 
 export function Hero() {
   return (
-    <div className="sm:w-3/4 h-full px-8 max-w-none">
+    <div className="sm:w-3/4 px-8 max-w-none">
       <div className="bg-transparent/40 mt-16">
         <div className="rounded-lg p-5 border border-purple-500 hero-gradient max-h-full animate-fade-in-3">
           <div className="">

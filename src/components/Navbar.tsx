@@ -13,7 +13,7 @@ const loggedOutNavigation: NavItem[] = [
   { name: "Login", href: "/comingsoon" },
 ];
 
-export default function Navbar() {
+export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const [shouldRenderMenu, setShouldRenderMenu] = useState<boolean>(false);
 
