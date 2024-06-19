@@ -58,3 +58,35 @@
 .clip-path-right {
   clip-path: polygon(50% 0, 100% 0, 100% 100%, 0 100%);
 }
+
+@keyframes moveArrowRight {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(10px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes moveArrowDown {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.animateArrowRight {
+  animation: moveArrowRight 2s ease-in-out infinite;
+}
+
+.animateArrowDown {
+  animation: moveArrowDown 2s ease-in-out infinite;
+}

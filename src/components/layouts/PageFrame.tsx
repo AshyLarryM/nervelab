@@ -17,6 +17,7 @@ export default function PageFrame({ showNavbar, showFooter, children}: PageFrame
       <main className="flex-1">
       <ParticlesComponent />
         {children}
+        
       </main>
       {showFooter && <Footer />}
     </div>
