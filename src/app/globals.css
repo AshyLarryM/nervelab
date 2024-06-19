@@ -18,7 +18,8 @@
 
 /* Rotate the SVG when the menu is open */
 .nav-icon.open {
-  transform: rotate(90deg); /* Rotates the icon to give a dynamic feel */
+  transform: rotate(90deg);
+  /* Rotates the icon to give a dynamic feel */
 }
 
 @property --gradient-angle {
@@ -28,18 +29,32 @@
 }
 
 @keyframes rotation {
-  from { --gradient-angle: 0deg; }
-  to { --gradient-angle: 360deg; }
+  from {
+    --gradient-angle: 0deg;
+  }
+
+  to {
+    --gradient-angle: 360deg;
+  }
 }
 
 
 .hero-gradient {
-  background: linear-gradient(var(--gradient-angle), #fbdcf418, #ffadec1c, #91037028, #a825ff18 );
+  background: linear-gradient(var(--gradient-angle), #fbdcf418, #ffadec1c, #91037028, #a825ff18);
   animation: rotation 10s linear infinite;
   box-shadow:
     0 0 12px rgba(250, 200, 249, 0.7),
     0 0 18px rgba(255, 147, 253, 0.7),
     0 0 24px rgba(237, 5, 233, 0.7);
+}
+
+.button-glow {
+  background: linear-gradient(var(--gradient-angle), #fbdcf418, #ffadec1c, #91037028, #a825ff18);
+  animation: rotation 10s linear infinite;
+  box-shadow:
+    0 0 8px rgba(250, 200, 249, 0.7),
+    0 0 14px rgba(255, 147, 253, 0.7),
+    0 0 20px rgba(237, 5, 233, 0.7);
 }
 
 .nav-gradient-green {
@@ -50,6 +65,16 @@
     0 0 18px rgba(83, 235, 111, 0.7),
     0 0 24px rgba(48, 255, 79, 0.7);
 }
+
+.login-gradient-green {
+  background: linear-gradient(var(--gradient-angle), #0fe83716, #12fc3d10, #80f29221);
+  animation: rotation 10s linear infinite;
+  box-shadow:
+    0 0 10px rgba(133, 230, 151, 0.7),
+    0 0 16px rgba(83, 235, 111, 0.7),
+    0 0 22px rgba(48, 255, 79, 0.7);
+}
+
 
 .clip-path-left {
   clip-path: polygon(0 0, 100% 0, 50% 100%, 0 100%);
@@ -63,9 +88,11 @@
   0% {
     transform: translateX(0);
   }
+
   50% {
     transform: translateX(10px);
   }
+
   100% {
     transform: translateX(0);
   }
@@ -75,9 +102,11 @@
   0% {
     transform: translateY(0);
   }
+
   50% {
     transform: translateY(10px);
   }
+
   100% {
     transform: translateY(0);
   }

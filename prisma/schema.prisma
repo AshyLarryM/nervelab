@@ -38,12 +38,15 @@ model User {
   id            String    @id @default(cuid())
   name          String?
   email         String?   @unique
+  password      String?
   emailVerified DateTime?
   image         String?
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
+  role          Role      @default(User)
   accounts      Account[]
   sessions      Session[]
+  
 }
 
 model VerificationRequest {
@@ -55,4 +58,9 @@ model VerificationRequest {
   updatedAt  DateTime @updatedAt
 
   @@unique([identifier, token])
+}
+
+enum Role {
+  User
+  Admin
 }

@@ -1,9 +1,11 @@
 
-import React, { FormEvent } from 'react';
-import { Form } from './form';
+import PageFrame from '@/components/layouts/PageFrame';
+import { RegisterForm } from '../../components/form/RegisterForm';
 
 export default async function RegisterPage() {
   return (
-    <Form />
+    <PageFrame showNavbar={true} showFooter={true}>
+      <RegisterForm />
+    </PageFrame>
   );
 }
