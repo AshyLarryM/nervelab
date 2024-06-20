@@ -21,7 +21,6 @@ export function RegisterForm() {
       <form onSubmit={handleSubmit} className="bg-transparent/60 border-green-300 login-gradient-green p-8 rounded-lg shadow-md w-full max-w-sm">
         <div className="mb-4">
           <h1 className='text-white text-header-glow font-semibold text-4xl text-center'>Register</h1>
-          <p>tex</p>
           <label htmlFor="email" className="block text-white text-sm font-bold mb-2">
             Email
           </label>

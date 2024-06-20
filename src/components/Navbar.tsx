@@ -1,6 +1,7 @@
 'use client'
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
+import { useSession } from 'next-auth/react'
 
 interface NavItem {
   name: string,
@@ -11,6 +12,18 @@ const loggedOutNavigation: NavItem[] = [
   { name: "Home", href: "/" },
   { name: "About", href: "/about" },
   { name: "Login", href: "/comingsoon" },
+];
+
+const userNavigation: NavItem[] = [
+  { name: "Dashboard", href: "/dashboard" },
+  { name: "Profile", href: "/profile" },
+  { name: "Logout", href: "/logout" },
+];
+
+const adminNavigation: NavItem[] = [
+  { name: "Admin Panel", href: "/admin" },
+  { name: "Manage Users", href: "/admin/users" },
+  { name: "Logout", href: "/logout" },
 ];
 
 export function Navbar() {
@@ -44,6 +57,10 @@ export function Navbar() {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  const session = useSession();
+
+  console.log(session);
 
   return (
     <header className='flex items-center justify-center h-[75px] w-full z-50 bg-transparent text-white'>

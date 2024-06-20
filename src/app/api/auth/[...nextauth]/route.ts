@@ -6,7 +6,7 @@ import bcrypt from 'bcryptjs';
 
 const prisma = new PrismaClient();
 
-const authHandler = NextAuth({
+export const authHandler = NextAuth({
   providers: [
     CredentialsProvider({
       name: 'Credentials',
@@ -14,7 +14,8 @@ const authHandler = NextAuth({
         email: { label: "Email", type: "email" },
         password: { label: "Password", type: "password" }
       },
-      async authorize(credentials) {
+      async authorize(credentials, request) {
+        console.log(credentials);
         // Ensure both email and password are provided
         if (!credentials?.email || !credentials?.password) {
           throw new Error('Please enter an email and password');
