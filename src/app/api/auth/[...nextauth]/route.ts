@@ -15,7 +15,6 @@ export const authHandler = NextAuth({
         password: { label: "Password", type: "password" }
       },
       async authorize(credentials, request) {
-        console.log(credentials);
         // Ensure both email and password are provided
         if (!credentials?.email || !credentials?.password) {
           throw new Error('Please enter an email and password');
@@ -51,16 +50,25 @@ export const authHandler = NextAuth({
   },
   callbacks: {
     async jwt({ token, user }) {
-      // Attach user ID to token
+      // Attach user ID and role to token
       if (user) {
         token.id = user.id;
+        token.role = user.role; // Assuming `role` is a property of the user object
+      } else if (token.id) {
+        // If user is not present, fetch the role from the database using the token's user ID
+        const dbUser = await prisma.user.findUnique({
+          where: {
+            id: token.id as string,
+          },
+        });
+        token.role = dbUser?.role as string;
       }
       return token;
     },
     async session({ session, token }) {
-      // Attach user ID to session
+      // Attach user ID and role to session
       if (token && token.id) {
-        session.user = { ...session.user, id: token.id } as { id: string, name: string, email: string };
+        session.user = { ...session.user, id: token.id, role: token.role } as { id: string, name: string, email: string, role: string };
       }
       return session;
     }

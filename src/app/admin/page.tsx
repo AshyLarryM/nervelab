@@ -1,12 +1,15 @@
-'use client'
-import { LoginForm } from '@/components/form/LoginForm'
 import PageFrame from '@/components/layouts/PageFrame'
+
 import React from 'react'
 
-export default function LoginPage() {
+export default function AdminHome() {
+
+
+   
+
   return (
     <PageFrame showNavbar={true} showFooter={true}>
-      <LoginForm />
+      <h1 className='text-4xl text-white text-center'>AdminHome</h1>
     </PageFrame>
   )
 }

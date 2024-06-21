@@ -46,7 +46,6 @@ model User {
   role          Role      @default(User)
   accounts      Account[]
   sessions      Session[]
-  
 }
 
 model VerificationRequest {
