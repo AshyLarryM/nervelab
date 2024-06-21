@@ -1,7 +1,7 @@
 'use client'
-import Link from 'next/link'
-import React, { useEffect, useState } from 'react'
-import { useSession } from 'next-auth/react'
+import Link from 'next/link';
+import React, { useEffect, useState } from 'react';
+import { useSession } from 'next-auth/react';
 import { isAdmin, isUser } from '@/lib/utils/admin';
 import { signOut } from 'next-auth/react';
 
@@ -11,18 +11,6 @@ type NavItem = {
   onClick?: () => void,
 }
 
-const loggedOutNavigation: NavItem[] = [
-  { name: "Home", href: "/" },
-  { name: "About", href: "/about" },
-  { name: "Login", href: "/login" },
-];
-
-const userNavigation: NavItem[] = [
-  { name: "Home", href: "/" },
-  { name: "About", href: "/about" },
-  { name: "Logout", onClick: () => signOut() },
-];
-
 const adminNavigation: NavItem[] = [
   { name: "Home", href: "/" },
   { name: "About", href: "/about" },
@@ -30,7 +18,7 @@ const adminNavigation: NavItem[] = [
   { name: "Logout", onClick: () => signOut() },
 ];
 
-export function Navbar() {
+export function AdminNavbar() {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const [shouldRenderMenu, setShouldRenderMenu] = useState<boolean>(false);
   const { data: session } = useSession();
@@ -63,27 +51,13 @@ export function Navbar() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  function renderNavLinks() {
-    if (session) {
-      if (isAdmin(session)) {
-        return adminNavigation
-      }
-
-      if (isUser(session)) {
-        return userNavigation
-      }
-    }
-    return loggedOutNavigation;
-  }
-
-
-  console.log(session?.user.role)
+  console.log(session?.user.role);
 
   return (
-    <header className='flex items-center justify-center h-[75px] w-full z-50 bg-transparent text-white'>
+    <header className='flex items-center justify-center h-[75px] w-full z-50 bg-transparent/20 text-white border-b border-b-green-500'>
       <div className="relative flex justify-between items-center max-w-screen-xl w-full px-5 z-50">
         <Link href="/">
-          <div className="flex items-center cursor-pointer">
+          <div className="flex items-center cursor-pointer mx-8">
             <img src="https://picsum.photos/seed/picsum/40" alt="Nerve Lab Logo" className="h-10" />
             <span className="ml-4 text-white font-medium text-xl"><span className='text-bright-green'>Nerve</span>Lab</span>
           </div>
@@ -91,7 +65,7 @@ export function Navbar() {
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center">
-          {renderNavLinks().map(item => (
+          {adminNavigation.map(item => (
             <Link className='py-2 px-4 mr-4 font-light text-white text-glow hover:text-bright-green/75 transition-colors duration-500 ease-in-out'
               key={item.name}
               href={item.href || '#'}
@@ -130,7 +104,7 @@ export function Navbar() {
         {/* Drop menu */}
         {shouldRenderMenu && (
           <div className={`absolute w-full top-10 right-0 mt-2 py-2 flex bg-transparent/80 flex-col pb-12 min-h-screen ${isMenuOpen ? 'animate-fade-in' : 'animate-fade-out'}`}>
-            {renderNavLinks().map(item => (
+            {adminNavigation.map(item => (
               <Link className='py-6 px-4 mr-4 font-light hover:text-bright-green text-center text-lg'
                 key={item.name}
                 href={item.href || '#'}
@@ -143,5 +117,5 @@ export function Navbar() {
         )}
       </div>
     </header>
-  )
+  );
 }

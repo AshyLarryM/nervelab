@@ -4,7 +4,7 @@ import { RegisterForm } from '../../components/form/RegisterForm';
 
 export default async function RegisterPage() {
   return (
-    <PageFrame showNavbar={true} showFooter={true}>
+    <PageFrame showNavbar={true} showFooter={true} showParticles={true} >
       <RegisterForm />
     </PageFrame>
   );

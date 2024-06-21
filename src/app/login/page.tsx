@@ -5,7 +5,7 @@ import React from 'react'
 
 export default function LoginPage() {
   return (
-    <PageFrame showNavbar={true} showFooter={true}>
+    <PageFrame showNavbar={true} showFooter={true} showParticles={true} >
       <LoginForm />
     </PageFrame>
   )

@@ -49,7 +49,7 @@ function About({ title, description, image, reverse }: AboutProps) {
 
 export default function AboutPage() {
   return (
-    <PageFrame showNavbar={true} showFooter={true}>
+    <PageFrame showNavbar={true} showFooter={true} showParticles={true}>
       <div className='max-w-7xl mx-auto'>
         <div>
           <h1 className='flex justify-center lg:text-5xl text-4xl font-semibold text-white text-glow py-8'>Welcome to Nerve Lab</h1>
