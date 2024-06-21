@@ -3,10 +3,12 @@ import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 import { useSession } from 'next-auth/react'
 import { isAdmin, isUser } from '@/lib/utils/admin';
+import { signOut } from 'next-auth/react';
 
 interface NavItem {
   name: string,
   href?: string,
+  onClick?: () => void,
 }
 
 const loggedOutNavigation: NavItem[] = [
@@ -18,14 +20,14 @@ const loggedOutNavigation: NavItem[] = [
 const userNavigation: NavItem[] = [
   { name: "Home", href: "/" },
   { name: "About", href: "/about" },
-  { name: "Sign Out", href: "/comingsoon" },
+  { name: "Logout", onClick: () => signOut() },
 ];
 
 const adminNavigation: NavItem[] = [
   { name: "Home", href: "/" },
   { name: "About", href: "/about" },
   { name: "Admin", href: "/admin" },
-  { name: "Logout", href: "/logout" },
+  { name: "Logout", onClick: () => signOut() },
 ];
 
 export function Navbar() {
@@ -90,7 +92,11 @@ export function Navbar() {
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center">
           {renderNavLinks().map(item => (
-            <Link className='py-2 px-4 mr-4 font-light text-white text-glow hover:text-bright-green/75 transition-colors duration-500 ease-in-out' key={item.name} href={item.href || '#'}>
+            <Link className='py-2 px-4 mr-4 font-light text-white text-glow hover:text-bright-green/75 transition-colors duration-500 ease-in-out'
+              key={item.name}
+              href={item.href || '#'}
+              onClick={item.onClick || handleLinkClick}
+            >
               {item.name}
             </Link>
           ))}
@@ -125,7 +131,11 @@ export function Navbar() {
         {shouldRenderMenu && (
           <div className={`absolute w-full top-10 right-0 mt-2 py-2 flex bg-transparent/80 flex-col pb-12 min-h-screen ${isMenuOpen ? 'animate-fade-in' : 'animate-fade-out'}`}>
             {renderNavLinks().map(item => (
-              <Link className='py-6 px-4 mr-4 font-light hover:text-bright-green text-center text-lg' key={item.name} href={item.href || '#'} onClick={handleLinkClick}>
+              <Link className='py-6 px-4 mr-4 font-light hover:text-bright-green text-center text-lg'
+                key={item.name}
+                href={item.href || '#'}
+                onClick={item.onClick || handleLinkClick}
+              >
                 {item.name}
               </Link>
             ))}
