@@ -10,14 +10,13 @@ interface PageFrameProps {
   showParticles?: boolean,
 }
 
-export default function PageFrame({ showNavbar, showFooter, children}: PageFrameProps){
+export default function PageFrame({ showNavbar, showFooter, children }: PageFrameProps) {
   return (
     <div className="flex flex-col h-full">
       {showNavbar && <Navbar />}
       <main className="flex-1">
-      <ParticlesComponent />
+        <ParticlesComponent />
         {children}
-        
       </main>
       {showFooter && <Footer />}
     </div>

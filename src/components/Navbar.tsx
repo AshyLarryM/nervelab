@@ -1,21 +1,39 @@
 'use client'
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
+import { useSession } from 'next-auth/react'
+import { isAdmin, isUser } from '@/lib/utils/admin';
+import { signOut } from 'next-auth/react';
 
 interface NavItem {
   name: string,
   href?: string,
+  onClick?: () => void,
 }
 
 const loggedOutNavigation: NavItem[] = [
   { name: "Home", href: "/" },
   { name: "About", href: "/about" },
-  { name: "Login", href: "/comingsoon" },
+  { name: "Login", href: "/login" },
+];
+
+const userNavigation: NavItem[] = [
+  { name: "Home", href: "/" },
+  { name: "About", href: "/about" },
+  { name: "Logout", onClick: () => signOut() },
+];
+
+const adminNavigation: NavItem[] = [
+  { name: "Home", href: "/" },
+  { name: "About", href: "/about" },
+  { name: "Admin", href: "/admin" },
+  { name: "Logout", onClick: () => signOut() },
 ];
 
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const [shouldRenderMenu, setShouldRenderMenu] = useState<boolean>(false);
+  const { data: session } = useSession();
 
   function toggleMenu() {
     if (!isMenuOpen) {
@@ -45,6 +63,22 @@ export function Navbar() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  function renderNavLinks() {
+    if (session) {
+      if (isAdmin(session)) {
+        return adminNavigation
+      }
+
+      if (isUser(session)) {
+        return userNavigation
+      }
+    }
+    return loggedOutNavigation;
+  }
+
+
+  console.log(session?.user.role)
+
   return (
     <header className='flex items-center justify-center h-[75px] w-full z-50 bg-transparent text-white'>
       <div className="relative flex justify-between items-center max-w-screen-xl w-full px-5 z-50">
@@ -57,8 +91,12 @@ export function Navbar() {
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center">
-          {loggedOutNavigation.map(item => (
-            <Link className='py-2 px-4 mr-4 font-light text-white text-glow hover:text-bright-green/75 transition-colors duration-500 ease-in-out' key={item.name} href={item.href || '#'}>
+          {renderNavLinks().map(item => (
+            <Link className='py-2 px-4 mr-4 font-light text-white text-glow hover:text-bright-green/75 transition-colors duration-500 ease-in-out'
+              key={item.name}
+              href={item.href || '#'}
+              onClick={item.onClick || handleLinkClick}
+            >
               {item.name}
             </Link>
           ))}
@@ -92,8 +130,12 @@ export function Navbar() {
         {/* Drop menu */}
         {shouldRenderMenu && (
           <div className={`absolute w-full top-10 right-0 mt-2 py-2 flex bg-transparent/80 flex-col pb-12 min-h-screen ${isMenuOpen ? 'animate-fade-in' : 'animate-fade-out'}`}>
-            {loggedOutNavigation.map(item => (
-              <Link className='py-6 px-4 mr-4 font-light hover:text-bright-green text-center text-lg' key={item.name} href={item.href || '#'} onClick={handleLinkClick}>
+            {renderNavLinks().map(item => (
+              <Link className='py-6 px-4 mr-4 font-light hover:text-bright-green text-center text-lg'
+                key={item.name}
+                href={item.href || '#'}
+                onClick={item.onClick || handleLinkClick}
+              >
                 {item.name}
               </Link>
             ))}

@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { Navbar } from "@/components/Navbar";
-import { Footer } from "@/components/Footer";
+import NextAuthProvider from "@/components/NextAuthProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -10,7 +9,7 @@ export const metadata: Metadata = {
   title: "Nerve Lab",
   description: "Multiplayer Online Game",
 };
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -18,11 +17,13 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full">
       <body className={`h-full bg-dark-futuristic ${inter.className}`}>
-        <div className="flex flex-col h-full ">
-          <main className="flex-1">
-            {children}
-          </main>
-        </div>
+        <NextAuthProvider>
+          <div className="flex flex-col h-full ">
+            <main className="flex-1">
+              {children}
+            </main>
+          </div>
+        </NextAuthProvider>
       </body>
     </html>
   );
