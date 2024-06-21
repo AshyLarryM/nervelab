@@ -1,7 +1,10 @@
 'use client'
+import { useRouter } from 'next/navigation';
 import React, { FormEvent } from 'react'
 
 export function RegisterForm() {
+
+  const router = useRouter();
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -14,13 +17,15 @@ export function RegisterForm() {
       }),
     });
     console.log({ response });
+    
+    router.push('/admin/users')
   }
 
   return (
     <div className="min-h-screen flex items-center justify-center">
       <form onSubmit={handleSubmit} className="bg-transparent/60 border-green-300 login-gradient-green p-8 rounded-lg shadow-md w-full max-w-sm">
         <div className="mb-4">
-          <h1 className='text-white text-header-glow font-semibold text-4xl text-center'>Register</h1>
+          <h1 className='text-white text-header-glow font-semibold text-4xl text-center'>New User</h1>
           <label htmlFor="email" className="block text-white text-sm font-bold mb-2">
             Email
           </label>
@@ -49,7 +54,7 @@ export function RegisterForm() {
             type="submit"
             className="transition-colors duration-300 hover:bg-purple-600 button-glow text-white/80 hover:text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
           >
-            Authenticate
+            Create User
           </button>
         </div>
       </form>

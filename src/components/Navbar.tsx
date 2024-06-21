@@ -26,7 +26,7 @@ const userNavigation: NavItem[] = [
 const adminNavigation: NavItem[] = [
   { name: "Home", href: "/" },
   { name: "About", href: "/about" },
-  { name: "Admin", href: "/admin" },
+  { name: "Admin Dashboard", href: "/admin" },
   { name: "Logout", onClick: () => signOut() },
 ];
 
@@ -75,9 +75,6 @@ export function Navbar() {
     }
     return loggedOutNavigation;
   }
-
-
-  console.log(session?.user.role)
 
   return (
     <header className='flex items-center justify-center h-[75px] w-full z-50 bg-transparent text-white'>

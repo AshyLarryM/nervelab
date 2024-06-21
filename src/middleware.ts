@@ -15,7 +15,7 @@ export async function middleware(request: NextRequest) {
   const isAdmin = token.role === 'Admin';
   const isUser = token.role === 'User';
 
-  const adminPaths = ['/admin'];
+  const adminPaths = ['/admin', '/register'];
   
   const userPaths = ['/user'];
 

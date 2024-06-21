@@ -52,9 +52,9 @@
   background: linear-gradient(var(--gradient-angle), #fbdcf418, #ffadec1c, #91037028, #a825ff18);
   animation: rotation 10s linear infinite;
   box-shadow:
-    0 0 8px rgba(250, 200, 249, 0.7),
-    0 0 14px rgba(255, 147, 253, 0.7),
-    0 0 20px rgba(237, 5, 233, 0.7);
+    0 0 6px rgba(250, 200, 249, 0.7),
+    0 0 10px rgba(255, 147, 253, 0.7),
+    0 0 16px rgba(237, 5, 233, 0.7);
 }
 
 .nav-gradient-green {

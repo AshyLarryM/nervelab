@@ -54,7 +54,7 @@ export function AdminNavbar() {
   console.log(session?.user.role);
 
   return (
-    <header className='flex items-center justify-center h-[75px] w-full z-50 bg-transparent/20 text-white border-b border-b-green-500'>
+    <header className='flex items-center justify-center h-[75px] w-full z-50 bg-transparent/20 text-white border-b border-b-purple-700'>
       <div className="relative flex justify-between items-center max-w-screen-xl w-full px-5 z-50">
         <Link href="/">
           <div className="flex items-center cursor-pointer mx-8">
