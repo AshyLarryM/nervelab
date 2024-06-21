@@ -4,10 +4,10 @@ import { prisma } from "@/lib/utils/prismadb";
 
 export async function POST(request: Request) {
   try {
-    const { email, password } = await request.json();
+    const { name, email, password } = await request.json();
 
     // Validate email and password
-    if (!email || !password) {
+    if (!name || !email || !password) {
       return NextResponse.json({ message: "Email and password are required" }, { status: 400 });
     }
 
@@ -23,6 +23,7 @@ export async function POST(request: Request) {
     // Save the user to the database
     const user = await prisma.user.create({
       data: {
+        name,
         email,
         password: hashedPassword,
       },
