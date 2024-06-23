@@ -9,4 +9,11 @@ export const UserSchema = z.object({
   role: z.enum(['User', 'Admin']),
 });
 
+export const UpdateUserSchema = z.object({
+  id: z.string().uuid(),
+  name: z.string().nullable(),
+  email: z.string().email().nullable(),
+  role: z.enum(['User', 'Admin']),
+});
+
 export type User = z.infer<typeof UserSchema>;
