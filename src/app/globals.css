@@ -119,3 +119,12 @@
 .animateArrowDown {
   animation: moveArrowDown 2s ease-in-out infinite;
 }
+
+
+.tiptap-editor .ProseMirror {
+  caret-color: #ffffff;
+}
+
+.tiptap-editor .ProseMirror-focused {
+  outline: none;
+}

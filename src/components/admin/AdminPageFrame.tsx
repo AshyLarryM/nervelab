@@ -12,9 +12,9 @@ interface AdminPageFrameProps {
 
 export default function AdminPageFrame({ children, showNavbar = true, showFooter = true, showParticles = false, showAdminSidebar = true }: AdminPageFrameProps) {
   return (
-    <div className="flex flex-col h-full">
+    <div className="flex flex-col h-screen">
       {showNavbar && <AdminNavbar />}
-      <div className="flex flex-1">
+      <div className="flex flex-1 overflow-hidden">
         {showAdminSidebar && <AdminSidebar />}
         <main className="flex-1 flex flex-col overflow-y-auto p-4">
           {children}

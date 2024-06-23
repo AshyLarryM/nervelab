@@ -1,6 +1,7 @@
 'use client';
 import { useUsers } from '@/lib/utils/server/state/useUsers';
 import { useState } from 'react';
+import TiptapEditor from './TiptapEditor';
 
 export function EmailForm() {
   const [subject, setSubject] = useState<string>('');
@@ -22,23 +23,27 @@ export function EmailForm() {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-
+    
+    const formData = {
+      subject,
+      body,
+      fromUserId,
+      toUserId,
+      replySubject,
+      replyBody,
+    };
+  
+    console.log('Form Data:', formData);
+  
     try {
-      const response = await fetch('/api/emails', {
+      const response = await fetch('/api/admin/emails/create', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          subject,
-          body,
-          fromUserId,
-          toUserId,
-          replySubject,
-          replyBody,
-        }),
+        body: JSON.stringify(formData),
       });
-
+  
       if (response.ok) {
         console.log('Email sent successfully');
         setSubject('');
@@ -57,8 +62,8 @@ export function EmailForm() {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit} className="max-w-2xl w-full mx-auto bg-transparent/20 p-6">
+    <div className='overflow-y-scroll'>
+      <form onSubmit={handleSubmit} className="max-w-5xl mx-auto p-6">
         <h1 className='text-center text-white text-3xl text-header-glow'>Create Email Chain</h1>
         <div className="mb-4">
           <label className="block text-gray-300">From:</label>
@@ -89,12 +94,10 @@ export function EmailForm() {
         </div>
         <div className="mb-4">
           <label className="block text-gray-300">Body:</label>
-          <textarea
+          <TiptapEditor
             value={body}
-            onChange={(e) => setBody(e.target.value)}
-            required
-            className="w-full px-3 py-2 mt-1 bg-gray-700 border border-gray-600 rounded-md focus:outline-none focus:ring focus:ring-purple-500 text-gray-300 h-32"
-          ></textarea>
+            onChange={(value) => setBody(value)}
+          />
         </div>
         <div className="mb-4">
           <label className="block text-gray-300">To:</label>
@@ -123,11 +126,10 @@ export function EmailForm() {
         </div>
         <div className="mb-4">
           <label className="block text-gray-300">Reply Body:</label>
-          <textarea
+          <TiptapEditor
             value={replyBody}
-            onChange={(e) => setReplyBody(e.target.value)}
-            className="w-full px-3 py-2 mt-1 bg-gray-700 border border-gray-600 rounded-md focus:outline-none focus:ring focus:ring-purple-500 text-gray-300 h-32"
-          ></textarea>
+            onChange={(value) => setReplyBody(value)}
+          />
         </div>
         <button type="submit" className="w-full py-2 mt-4 bg-transparent border border-purple-500 text-white rounded-md transition-colors duration-200 hover:bg-purple-500 focus:outline-none focus:ring focus:ring-purple-500">
           Create Email

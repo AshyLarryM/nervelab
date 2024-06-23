@@ -1,9 +1,7 @@
-// api/auth/users.ts
 import { NextRequest, NextResponse } from 'next/server';
-import { PrismaClient } from '@prisma/client';
 import { UpdateUserSchema, UserSchema } from '@/lib/utils/schema';
+import { prisma } from '@/lib/utils/prismadb';
 
-const prisma = new PrismaClient();
 
 export async function GET(req: NextRequest) {
   try {
