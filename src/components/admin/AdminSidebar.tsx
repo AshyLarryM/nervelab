@@ -8,7 +8,7 @@ export function AdminSidebar() {
       <nav className="flex flex-col p-4 space-y-2">
         <Link href="#" className="transition-colors duration-300 hover:bg-purple-700 p-2 rounded">Dashboard</Link>
         <Link href="/admin/users" className="transition-colors duration-300 hover:bg-purple-700 p-2 rounded">Users</Link>
-        <Link href="#" className="transition-colors duration-300 hover:bg-purple-700 p-2 rounded">Emails</Link>
+        <Link href="/admin/emails/create" className="transition-colors duration-300 hover:bg-purple-700 p-2 rounded">Emails</Link>
         <Link href="#" className="transition-colors duration-300 hover:bg-purple-700 p-2 rounded">Stats</Link>
       </nav>
     </div>
