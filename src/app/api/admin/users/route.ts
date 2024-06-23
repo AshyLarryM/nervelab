@@ -17,8 +17,6 @@ export async function GET(req: NextRequest) {
       },
     });
     const parsedUsers = UserSchema.array().parse(users);
-    console.log("server users: ", parsedUsers);
-    console.log("users length: ", parsedUsers.length);
     return NextResponse.json(parsedUsers, { status: 200 });
   } catch (error) {
     console.error('Error fetching users:', error);

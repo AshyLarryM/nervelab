@@ -1,11 +1,9 @@
 'use client'
 import React, { useState } from 'react'
-import Link from 'next/link'; // Assuming you're using Next.js
+import Link from 'next/link';
 import { useUsers, useUpdateUser } from '@/lib/utils/server/state/useUsers';
 
 export default function UsersTable() {
-
-  const updateUserMutation = useUpdateUser();
 
   const { data, error, isLoading } = useUsers();
 
