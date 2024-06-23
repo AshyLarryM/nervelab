@@ -23,6 +23,8 @@ export function AdminNavbar() {
   const [shouldRenderMenu, setShouldRenderMenu] = useState<boolean>(false);
   const { data: session } = useSession();
 
+  const userName = session?.user.name
+
   function toggleMenu() {
     if (!isMenuOpen) {
       setIsMenuOpen(true);
@@ -51,8 +53,6 @@ export function AdminNavbar() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  console.log(session?.user.role);
-
   return (
     <header className='flex items-center justify-center h-[75px] w-full z-50 bg-transparent/20 text-white border-b border-b-purple-700'>
       <div className="relative flex justify-between items-center max-w-screen-xl w-full px-5 z-50">
@@ -74,6 +74,7 @@ export function AdminNavbar() {
               {item.name}
             </Link>
           ))}
+          <p className=' mr-4 font-light text-white text-glow'>{userName}</p>
         </nav>
 
         <div className="md:hidden absolute top-0 right-0 mr-4" onClick={toggleMenu}>
