@@ -1,6 +1,16 @@
 import AdminPageFrame from '@/components/admin/AdminPageFrame';
 import { EditUserForm } from '@/components/form/EditUserForm';
 
+
+export default async function EditUserPage({ params }: { params: { id: string } }) {
+  const user = await getUserDataById(params.id);
+  return (
+    <AdminPageFrame>
+      <EditUserForm initialData={user} />
+    </AdminPageFrame>
+  );
+}
+
 async function getUserDataById(id: string) {
   const url = `${process.env.NEXTAUTH_URL}/api/admin/users/${id}`;
   console.log('Fetching user data from URL:', url);
@@ -21,13 +31,4 @@ async function getUserDataById(id: string) {
     console.error('Failed to fetch user data:', error);
     throw new Error('Failed to fetch user data');
   }
-}
-
-export default async function EditUserPage({ params }: { params: { id: string } }) {
-  const user = await getUserDataById(params.id);
-  return (
-    <AdminPageFrame>
-      <EditUserForm initialData={user} />
-    </AdminPageFrame>
-  )
 }

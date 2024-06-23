@@ -1,30 +1,23 @@
 'use client'
 import { useRouter } from 'next/navigation';
-import React, { FormEvent, useEffect, useState } from 'react';
+import React, { FormEvent, useState } from 'react';
 
 interface EditUserFormProps {
   initialData: {
     id: string;
     name: string;
     email: string;
-    role: "User" | "Admin";
+    role: 'User' | 'Admin';
   };
 }
 
 export function EditUserForm({ initialData }: EditUserFormProps) {
-  const [name, setName] = useState<string>('');
-  const [email, setEmail] = useState<string>('');
-  const [role, setRole] = useState<'User' | 'Admin'>('User');
-  
-  const router = useRouter();
 
-  useEffect(() => {
-    if (initialData) {
-      setName(initialData.name || '');
-      setEmail(initialData.email || '');
-      setRole(initialData.role || 'User')
-    }
-  }, [initialData]);
+  const [name, setName] = useState<string>(initialData.name);
+  const [email, setEmail] = useState<string>(initialData.email);
+  const [role, setRole] = useState<'User' | 'Admin'>(initialData.role);
+
+  const router = useRouter();
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -34,7 +27,9 @@ export function EditUserForm({ initialData }: EditUserFormProps) {
       role,
     };
 
-    const response = await fetch(`/api/auth/edit/${initialData.id}`, {
+    console.log('Submitting form data:', formData); // Log form data before submission
+
+    const response = await fetch(`/api/admin/users/${initialData.id}`, {
       method: 'PUT',
       body: JSON.stringify(formData),
       headers: {
@@ -46,6 +41,8 @@ export function EditUserForm({ initialData }: EditUserFormProps) {
 
     if (response.ok) {
       router.push('/admin/users');
+    } else {
+      console.error('Failed to update user');
     }
   }
 
@@ -53,7 +50,7 @@ export function EditUserForm({ initialData }: EditUserFormProps) {
     <div className="min-h-screen flex items-center justify-center">
       <form onSubmit={handleSubmit} className="bg-transparent/60 border-green-300 login-gradient-green p-8 rounded-lg shadow-md w-full max-w-sm">
         <div className="my-4">
-          <h1 className='text-white text-header-glow font-semibold text-4xl text-center'>
+          <h1 className="text-white text-header-glow font-semibold text-4xl text-center">
             Edit User
           </h1>
           <div className="mt-6">
