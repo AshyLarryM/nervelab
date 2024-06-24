@@ -52,7 +52,7 @@ export default function UsersTable() {
                         <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-white">
                           Role
                         </th>
-                        <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-0">
+                        <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-0 text-white">
                           <span className="sr-only">Edit</span>
                         </th>
                       </tr>
@@ -68,6 +68,11 @@ export default function UsersTable() {
                           <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
                             <Link href={`/admin/users/edit/${user.id}`} className='text-green-600 transition-colors duration-150 hover:text-green-300'>
                               Edit<span className="sr-only">, {user.name}</span>
+                            </Link>
+                          </td>
+                          <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
+                            <Link href={`/admin/users/emails/${user.id}`} className='text-green-600 transition-colors duration-150 hover:text-green-300'>
+                              Emails<span className="sr-only">, {user.name}</span>
                             </Link>
                           </td>
                         </tr>
