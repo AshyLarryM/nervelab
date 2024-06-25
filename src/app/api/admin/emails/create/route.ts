@@ -38,7 +38,7 @@ export async function POST(req: NextRequest) {
           create: {
             subject: sanitizedReplySubject,
             body: sanitizedReplyBody,
-            userId: fromUserId,
+            userId: toUserId,
           },
         },
       },

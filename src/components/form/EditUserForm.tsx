@@ -27,7 +27,7 @@ export function EditUserForm({ initialData }: EditUserFormProps) {
       role,
     };
 
-    console.log('Submitting form data:', formData); // Log form data before submission
+    console.log('Submitting form data:', formData);
 
     const response = await fetch(`/api/admin/users/${initialData.id}`, {
       method: 'PUT',
