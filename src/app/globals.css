@@ -96,17 +96,21 @@
 
 
 .image-glow {
-  filter: brightness(0%) drop-shadow(0 0 0 rgba(255, 255, 255, 0)); /* Start completely dark */
-  opacity: 0; /* Start fully transparent */
+  -webkit-filter: brightness(0%) drop-shadow(0 0 0 rgba(255, 255, 255, 0));
+  filter: brightness(0%) drop-shadow(0 0 0 rgba(255, 255, 255, 0));
+  opacity: 0;
+  -webkit-animation: illuminate 10s infinite;
   animation: illuminate 10s infinite;
 }
 
-@keyframes illuminate {
+@-webkit-keyframes illuminate {
   0%, 100% {
+    -webkit-filter: brightness(0%) drop-shadow(0 0 0 rgba(255, 255, 255, 0));
     filter: brightness(0%) drop-shadow(0 0 0 rgba(255, 255, 255, 0));
     opacity: 0;
   }
   50% {
+    -webkit-filter: brightness(100%) drop-shadow(0 0 12px rgb(233, 161, 255));
     filter: brightness(100%) drop-shadow(0 0 12px rgb(233, 161, 255));
     opacity: 1;
   }
