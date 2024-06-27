@@ -50,8 +50,8 @@ export function Navbar() {
       <div className="relative flex justify-between items-center max-w-screen-xl w-full px-5 z-50">
         <Link href="/">
           <div className="flex items-center cursor-pointer">
-            <img src="https://picsum.photos/seed/picsum/40" alt="Nerve Lab Logo" className="h-10" />
-            <span className="ml-4 text-white font-medium text-xl"><span className='text-bright-green'>Nerve</span>Lab</span>
+            <img src="/assets/logo/nervelab-logo.png" alt="Nerve Lab Logo" className="h-14" />
+            <span className="ml-4 text-white font-medium text-xl"><span></span><img className='h-12 mt-2' src='/assets/logo/nervelab-text-rm-bg.png'/></span>
           </div>
         </Link>
 

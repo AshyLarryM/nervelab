@@ -90,3 +90,21 @@
 .animateArrowDown {
   animation: moveArrowDown 2s ease-in-out infinite;
 }
+
+
+.image-glow {
+  filter: brightness(0%) drop-shadow(0 0 0 rgba(255, 255, 255, 0)); /* Start completely dark */
+  opacity: 0; /* Start fully transparent */
+  animation: illuminate 10s infinite;
+}
+
+@keyframes illuminate {
+  0%, 100% {
+    filter: brightness(0%) drop-shadow(0 0 0 rgba(255, 255, 255, 0));
+    opacity: 0;
+  }
+  50% {
+    filter: brightness(100%) drop-shadow(0 0 12px rgba(255, 255, 255, 1));
+    opacity: 1;
+  }
+}
