@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  min-height: 100vh;
+  margin: 0;
+  background: #000000;
+}
+
 .text-glow {
   text-shadow: 0 0 10px #12fc3d;
 }
