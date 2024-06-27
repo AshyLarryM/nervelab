@@ -11,7 +11,7 @@ interface AdBannerProps {
 
 export function AdBanner({ title, link }: AdBannerProps) {
   return (
-    <div className='flex flex-col lg:flex-row justify-center items-center md:my-16 mt-28 mx-4'>
+    <div className='flex flex-col lg:flex-row justify-center items-center md:my-16 mt-28 mb-8 mx-4'>
       <h2 className='text-white lg:text-5xl text-3xl text-glow flex flex-col lg:flex-row items-center text-center lg:text-left'>
         {title}
         <div className='flex lg:flex-row flex-col items-center'>
