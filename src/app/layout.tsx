@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Orbitron } from "next/font/google";
 import "./globals.css";
 import NextAuthProvider from "@/components/NextAuthProvider";
 import { ReactQueryProvider } from "@/components/ReactQueryProvider";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Orbitron({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Nerve Lab",

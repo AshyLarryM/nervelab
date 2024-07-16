@@ -52,7 +52,7 @@ export default function AboutPage() {
     <PageFrame showNavbar={true} showFooter={true} showParticles={true}>
       <div className='max-w-7xl mx-auto'>
         <div>
-          <h1 className='flex justify-center lg:text-5xl text-4xl font-semibold text-white text-glow py-8'>Welcome to Nerve Lab</h1>
+          <h1 className='flex justify-center lg:text-5xl text-4xl font-medium text-white  py-8'>About NerveLab</h1>
         </div>
         {aboutData.map((data, index) => (
           <About key={index} title={data.title} description={data.description} image={data.image} reverse={index % 2 !== 0} />

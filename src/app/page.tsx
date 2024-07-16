@@ -12,7 +12,7 @@ export default function Home() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 1500);
+    }, 2000);
 
     return () => clearTimeout(timer);
   }, []);
@@ -27,7 +27,7 @@ export default function Home() {
         <Hero />
       </div>
       <AdBanner
-        title='Add Vector Ball to Steam WishList'
+        title='Add VectorBall to Steam WishList'
         link='https://store.steampowered.com/app/2512660/VectorBall/' />
     </PageFrame>
   );

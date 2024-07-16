@@ -81,19 +81,15 @@ export function Navbar() {
       <div className="relative flex justify-between items-center max-w-screen-xl w-full px-5 z-50">
         <Link href="/">
           <div className="flex items-center cursor-pointer">
-            <img src="https://picsum.photos/seed/picsum/40" alt="Nerve Lab Logo" className="h-10" />
-            <span className="ml-4 text-white font-medium text-xl"><span className='text-bright-green'>Nerve</span>Lab</span>
+            <img src="/assets/logo/nervelablogo.png" alt="Nerve Lab Logo" className="md:h-12 h-10 pb-2" />
+            <span className="text-white font-medium text-xl"><span></span><img className='md:h-10 h-8' src='/assets/logo/nervelab-text-rm-bg.png'/></span>
           </div>
         </Link>
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center">
-          {renderNavLinks().map(item => (
-            <Link className='py-2 px-4 mr-4 font-light text-white text-glow hover:text-bright-green/75 transition-colors duration-500 ease-in-out'
-              key={item.name}
-              href={item.href || '#'}
-              onClick={item.onClick || handleLinkClick}
-            >
+          {loggedOutNavigation.map(item => (
+            <Link className='py-2 px-4 mr-4 font-light text-white text-glow hover:text-green-300 transition-colors duration-500 ease-in-out' key={item.name} href={item.href || '#'}>
               {item.name}
             </Link>
           ))}
@@ -101,7 +97,7 @@ export function Navbar() {
 
         <div className="md:hidden absolute top-0 right-0 mr-4" onClick={toggleMenu}>
           <svg
-            className={`h-8 w-8 text-bright-green nav-icon ${isMenuOpen ? 'open' : ''}`}
+            className={`h-8 w-8 text-green-200 nav-icon ${isMenuOpen ? 'open' : ''}`}
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"

@@ -2,12 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  min-height: 100vh;
+  margin: 0;
+  background: #000000;
+}
+
 .text-glow {
   text-shadow: 0 0 10px #12fc3d;
 }
 
 .text-header-glow {
-  text-shadow: 0 0 20px #aa25eddf
+  text-shadow: 0 0 12px #aa25eddf
 }
 
 
@@ -114,10 +120,12 @@
 
 .animateArrowRight {
   animation: moveArrowRight 2s ease-in-out infinite;
+  filter: drop-shadow(0px 0px 7px rgba(127, 246, 161, 0.845));
 }
 
 .animateArrowDown {
   animation: moveArrowDown 2s ease-in-out infinite;
+  filter: drop-shadow(0px 0px 7px rgba(127, 246, 161, 0.845));
 }
 
 

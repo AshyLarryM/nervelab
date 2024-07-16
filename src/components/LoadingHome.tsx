@@ -1,9 +1,11 @@
+
 import React from 'react'
+import Image from 'next/image'
 
 export default function LoadingHome() {
   return (
     <div className="flex justify-center items-center h-screen bg-black">
-      <img src='https://picsum.photos/seed/picsum/100' alt="Company Logo" className="w-32 animate-bounce" />
+      <Image src='/assets/logo/nervelablogo.png?version=1' alt="nervelab-logo" className="animate-fade-in-3" height='200' width='200' />
     </div>
   )
 }
