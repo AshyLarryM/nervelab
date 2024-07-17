@@ -57,9 +57,9 @@ export function AdminNavbar() {
     <header className='flex items-center justify-center h-[75px] w-full z-50 bg-transparent/20 text-white border-b border-b-purple-700'>
       <div className="relative flex justify-between items-center max-w-screen-xl w-full px-5 z-50">
         <Link href="/">
-          <div className="flex items-center cursor-pointer mx-8">
-            <img src="https://picsum.photos/seed/picsum/40" alt="Nerve Lab Logo" className="h-10" />
-            <span className="ml-4 text-white font-medium text-xl"><span className='text-bright-green'>Nerve</span>Lab</span>
+          <div className="flex items-center cursor-pointer">
+            <img src="/assets/logo/nervelablogo.png" alt="Nerve Lab Logo" className="md:h-12 h-10 pb-2" />
+            <span className="text-white font-medium text-xl"><span></span><img className='md:h-10 h-8' src='/assets/logo/nervelab-text-rm-bg.png' /></span>
           </div>
         </Link>
 
