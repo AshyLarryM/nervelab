@@ -8,8 +8,6 @@ export function EmailForm() {
   const [body, setBody] = useState<string>('');
   const [fromUserId, setFromUserId] = useState<string>('');
   const [toUserId, setToUserId] = useState<string>('');
-  const [replySubject, setReplySubject] = useState<string>('');
-  const [replyBody, setReplyBody] = useState<string>('');
 
   const { data, error, isLoading } = useUsers();
 
@@ -29,8 +27,6 @@ export function EmailForm() {
       body,
       fromUserId,
       toUserId,
-      replySubject,
-      replyBody,
     };
   
     console.log('Form Data:', formData);
@@ -50,8 +46,6 @@ export function EmailForm() {
         setBody('');
         setFromUserId('');
         setToUserId('');
-        setReplySubject('');
-        setReplyBody('');
       } else {
         const data = await response.json();
         console.log(`Failed to send email: ${data.error}`);
@@ -62,7 +56,7 @@ export function EmailForm() {
   };
 
   return (
-    <div className='overflow-y-scroll'>
+    <div className=''>
       <form onSubmit={handleSubmit} className="max-w-5xl mx-auto p-6">
         <h1 className='text-center text-white text-3xl text-header-glow'>Create Email Chain</h1>
         <div className="mb-4">
@@ -115,22 +109,7 @@ export function EmailForm() {
             ))}
           </select>
         </div>
-        <div className="mb-4">
-          <label className="block text-gray-300">Reply Subject:</label>
-          <input
-            type="text"
-            value={replySubject}
-            onChange={(e) => setReplySubject(e.target.value)}
-            className="w-full px-3 py-2 mt-1 bg-gray-700 border border-gray-600 rounded-md focus:outline-none focus:ring focus:ring-purple-500 text-gray-300"
-          />
-        </div>
-        <div className="mb-4">
-          <label className="block text-gray-300">Reply Body:</label>
-          <TiptapEditor
-            value={replyBody}
-            onChange={(value) => setReplyBody(value)}
-          />
-        </div>
+       
         <button type="submit" className="w-full py-2 mt-4 bg-transparent border border-purple-500 text-white rounded-md transition-colors duration-200 hover:bg-purple-500 focus:outline-none focus:ring focus:ring-purple-500">
           Create Email
         </button>

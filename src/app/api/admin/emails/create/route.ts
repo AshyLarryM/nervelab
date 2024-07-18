@@ -10,7 +10,7 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
     console.log('Received body:', body);
 
-    const { subject, body: emailBody, fromUserId, toUserId, replySubject, replyBody } = body;
+    const { subject, body: emailBody, fromUserId, toUserId,  } = body;
 
     // Validate required fields
     if (!validator.isLength(subject, { min: 1 })) {
@@ -24,9 +24,9 @@ export async function POST(req: NextRequest) {
 
     // Sanitize HTML content
     const sanitizedBody = sanitizeHtml(emailBody);
-    const sanitizedReplyBody = sanitizeHtml(replyBody);
+    
     const sanitizedSubject = validator.escape(subject);
-    const sanitizedReplySubject = validator.escape(replySubject);
+    
 
     const email = await prisma.email.create({
       data: {
@@ -34,13 +34,6 @@ export async function POST(req: NextRequest) {
         body: sanitizedBody,
         fromUserId,
         toUserId,
-        replies: {
-          create: {
-            subject: sanitizedReplySubject,
-            body: sanitizedReplyBody,
-            userId: toUserId,
-          },
-        },
       },
     });
 
