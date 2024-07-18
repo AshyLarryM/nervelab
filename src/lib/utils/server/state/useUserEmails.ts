@@ -1,7 +1,7 @@
 import { useQuery } from "react-query";
-import {  UserEmailResponse } from "../types";
+import { UserEmailResponse } from "../types";
 
-const fetchUserEmails = async (id: string): Promise<UserEmailResponse> => {
+async function fetchUserEmails (id: string): Promise<UserEmailResponse> {
   const response = await fetch(`/api/admin/users/emails/${id}`);
   if (!response.ok) {
     throw new Error('Network response was not ok');
@@ -9,7 +9,6 @@ const fetchUserEmails = async (id: string): Promise<UserEmailResponse> => {
   return response.json();
 };
 
-
 export function useUserEmails(userId: string) {
-  return useQuery<UserEmailResponse, Error>(['userEmails', userId], () => fetchUserEmails(userId))
+  return useQuery<UserEmailResponse, Error>(['userEmails', userId], () => fetchUserEmails(userId));
 }

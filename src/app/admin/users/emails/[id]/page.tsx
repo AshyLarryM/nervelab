@@ -19,7 +19,7 @@ export default function UserEmailPage({ params }: { params: { id: string } }) {
   const receivedEmails = data?.userEmails.receivedEmails;
 
   if ((!sentEmails || sentEmails.length === 0) && (!receivedEmails || receivedEmails.length === 0)) {
-    return <AdminPageFrame><div className="text-white text-center py-10">No sent emails found.</div></AdminPageFrame>;
+    return <AdminPageFrame><div className="text-white text-center py-10">No emails found.</div></AdminPageFrame>;
   }
 
   return (
@@ -31,14 +31,13 @@ export default function UserEmailPage({ params }: { params: { id: string } }) {
           {sentEmails?.map(email => (
             <li key={email.id} className="mb-4 p-4 bg-white shadow-md rounded-lg">
               <strong>From:</strong> {email.fromUser.name} ({email.fromUser.email})<br />
+              <strong>To:</strong> {email.toUser.name} ({email.toUser.email})<br />
               <strong>Subject:</strong> {email.subject}<br />
               <strong>Body:</strong>
               <div dangerouslySetInnerHTML={{ __html: email.body }} className="whitespace-pre-line" /><br />
-              
               <strong>Sent At:</strong> {new Date(email.createdAt).toLocaleString()}
               {email.replies && email.replies.length > 0 && (
                 <div className="mt-4">
-                  
                   <ul>
                     {email.replies.map(reply => (
                       <li key={reply.id} className="mt-2 bg-gray-100 rounded-lg p-2">
@@ -59,7 +58,7 @@ export default function UserEmailPage({ params }: { params: { id: string } }) {
           {receivedEmails?.map(email => (
             <li key={email.id} className="mb-4 p-4 bg-white shadow-md rounded-lg">
               <strong>From:</strong> {email.fromUser.name} ({email.fromUser.email})<br />
-              <strong>To:</strong> {email.toUserId.name} ({email.toUser.email})<br />
+              <strong>To:</strong> {email.toUser.name} ({email.toUser.email})<br />
               <strong>Subject:</strong> {email.subject}<br />
               <strong>Body:</strong>
               <div dangerouslySetInnerHTML={{ __html: email.body }} className="whitespace-pre-line" /><br />
