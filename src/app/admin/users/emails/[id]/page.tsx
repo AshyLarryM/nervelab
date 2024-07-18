@@ -8,16 +8,16 @@ export default function UserEmailPage({ params }: { params: { id: string } }) {
   const { data, isLoading, isError, error } = useUserEmails(userId);
 
   if (isLoading) {
-    return <div className="text-center py-10 text-gray-600">Loading...</div>;
+    return <AdminPageFrame><div className="text-center py-10 text-white">Loading...</div></AdminPageFrame>;
   }
 
   if (isError) {
-    return <div className="text-red-500 text-center py-10">{error?.message}</div>;
+    return <AdminPageFrame><div className="text-red-500 text-center py-10">{error?.message}</div></AdminPageFrame>;
   }
 
   const emails = data?.userEmails?.sentEmails;
   if (!emails || emails.length === 0) {
-    return <div className="text-gray-500 text-center py-10">No sent emails found.</div>;
+    return <AdminPageFrame><div className="text-white text-center py-10">No sent emails found.</div></AdminPageFrame>;
   }
 
   return (
