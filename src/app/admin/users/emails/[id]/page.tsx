@@ -1,11 +1,26 @@
 'use client'
 import AdminPageFrame from '@/components/admin/AdminPageFrame';
+import { ReplyForm } from '@/components/form/ReplyForm';
 import { useUserEmails } from '@/lib/utils/server/state/useUserEmails';
-import React from 'react';
+import React, { useState } from 'react';
 
 export default function UserEmailPage({ params }: { params: { id: string } }) {
   const userId = params.id;
   const { data, isLoading, isError, error } = useUserEmails(userId);
+  const [replyingEmailId, setReplyingEmailId] = useState<string | null>(null);
+
+  async function handleReplySubmit(reply: { subject: string; body: string }, emailId: string) {
+    console.log('Reply submitted:', reply);
+    setReplyingEmailId(null); // Hide the form after submission
+  };
+
+  function toggleReplyForm(emailId: string) {
+    if (replyingEmailId === emailId) {
+      setReplyingEmailId(null);
+    } else {
+      setReplyingEmailId(emailId);
+    }
+  };
 
   if (isLoading) {
     return <AdminPageFrame><div className="text-center py-10 text-white">Loading...</div></AdminPageFrame>;
@@ -75,6 +90,15 @@ export default function UserEmailPage({ params }: { params: { id: string } }) {
                     ))}
                   </ul>
                 </div>
+              )}
+              <button
+                onClick={() => toggleReplyForm(email.id)}
+                className="mt-4 bg-purple-500 text-white px-4 py-2 rounded-md"
+              >
+                {replyingEmailId === email.id ? 'Cancel' : 'Reply'}
+              </button>
+              {replyingEmailId === email.id && (
+                <ReplyForm emailId={email.id} userId={userId} onReplySubmit={(reply) => handleReplySubmit(reply, email.id)} />
               )}
             </li>
           ))}
