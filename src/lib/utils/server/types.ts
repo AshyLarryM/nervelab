@@ -4,12 +4,12 @@ export type SafeUser = Omit<PrismaUser, 'password'>;
 
 
 
-interface User {
+export interface User {
   name: string;
   email: string;
 }
 
-interface Email {
+export interface Email {
   id: string;
   subject: string;
   body: string;
@@ -19,13 +19,13 @@ interface Email {
   updatedAt: string;
 }
 
-interface DetailedEmail extends Email {
+export interface DetailedEmail extends Email {
   fromUser: User;
   toUser: User;
   replies: Reply[];
 }
 
-interface Reply {
+export interface Reply {
   id: string;
   subject: string;
   body: string;

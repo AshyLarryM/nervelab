@@ -27,7 +27,7 @@ export const mockData: UserEmailResponse = {
     receivedEmails: [
       {
         id: 'email2',
-        subject: 'Hello',
+        subject: 'Hello - Please Get Back to Me ASAP',
         body: 'Thanks for the email.',
         fromUserId: '2',
         toUserId: '1',
@@ -53,6 +53,7 @@ export const mockData: UserEmailResponse = {
 };
 
 export default function UserInboxPage() {
+  
   const [selectedFolder, setSelectedFolder] = useState<'inbox' | 'sent'>('inbox');
 
   return (
