@@ -36,11 +36,11 @@ interface Reply {
   user: User;
 }
 
-interface EmailWithReplies extends DetailedEmail {
+export interface EmailWithReplies extends DetailedEmail {
   replies: Reply[];
 }
 
-interface UserEmails {
+export interface UserEmails {
   id: string;
   name: string;
   email: string;
