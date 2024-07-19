@@ -17,6 +17,7 @@ export async function  GET(req: NextRequest, { params }: { params: { id: string 
         replies: {
           include: {
             user: true,
+            email: true,
           },
         },
       },

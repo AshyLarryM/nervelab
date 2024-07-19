@@ -66,11 +66,18 @@ export function Navbar() {
   function renderNavLinks() {
     if (session) {
       if (isAdmin(session)) {
-        return adminNavigation
+        return [
+          ...adminNavigation,
+          { name: `Welcome, ${session.user.name}!` },
+        ];
       }
 
       if (isUser(session)) {
-        return userNavigation
+        return [
+          ...userNavigation,
+          { name: "View Mail", href: `/mail/inbox/${session.user.id}`},
+          { name: `Welcome, ${session.user.name}!` },
+        ];
       }
     }
     return loggedOutNavigation;
@@ -88,10 +95,25 @@ export function Navbar() {
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center">
-          {loggedOutNavigation.map(item => (
-            <Link className='py-2 px-4 mr-4 font-light text-white text-glow hover:text-green-300 transition-colors duration-500 ease-in-out' key={item.name} href={item.href || '#'}>
-              {item.name}
-            </Link>
+          {renderNavLinks().map(item => (
+            item.onClick ? (
+              <button
+                key={item.name}
+                onClick={item.onClick}
+                className='py-2 px-4 mr-4 font-light text-white text-glow hover:text-green-300 transition-colors duration-500 ease-in-out'
+              >
+                {item.name}
+              </button>
+            ) : (
+              <Link
+                key={item.name}
+                href={item.href || '#'}
+                className='py-2 px-4 mr-4 font-light text-white text-glow hover:text-green-300 transition-colors duration-500 ease-in-out'
+                onClick={handleLinkClick}
+              >
+                {item.name}
+              </Link>
+            )
           ))}
         </nav>
 
@@ -124,13 +146,24 @@ export function Navbar() {
         {shouldRenderMenu && (
           <div className={`absolute w-full top-10 right-0 mt-2 py-2 flex bg-transparent/80 flex-col pb-12 min-h-screen ${isMenuOpen ? 'animate-fade-in' : 'animate-fade-out'}`}>
             {renderNavLinks().map(item => (
-              <Link className='py-6 px-4 mr-4 font-light hover:text-bright-green text-center text-lg'
-                key={item.name}
-                href={item.href || '#'}
-                onClick={item.onClick || handleLinkClick}
-              >
-                {item.name}
-              </Link>
+              item.onClick ? (
+                <button
+                  key={item.name}
+                  onClick={item.onClick}
+                  className='py-6 px-4 mr-4 font-light hover:text-bright-green text-center text-lg'
+                >
+                  {item.name}
+                </button>
+              ) : (
+                <Link
+                  key={item.name}
+                  href={item.href || '#'}
+                  className='py-6 px-4 mr-4 font-light hover:text-bright-green text-center text-lg'
+                  onClick={handleLinkClick}
+                >
+                  {item.name}
+                </Link>
+              )
             ))}
           </div>
         )}
