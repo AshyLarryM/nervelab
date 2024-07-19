@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import AdminPageFrame from '@/components/admin/AdminPageFrame';
 import { ReplyForm } from '@/components/form/ReplyForm';
 import { useUserEmails } from '@/lib/utils/server/state/useUserEmails';
@@ -8,10 +8,12 @@ export default function UserEmailPage({ params }: { params: { id: string } }) {
   const userId = params.id;
   const { data, isLoading, isError, error } = useUserEmails(userId);
   const [replyingEmailId, setReplyingEmailId] = useState<string | null>(null);
+  const [replyingReplyId, setReplyingReplyId] = useState<string | null>(null);
 
   async function handleReplySubmit(reply: { subject: string; body: string }, emailId: string) {
     console.log('Reply submitted:', reply);
-    setReplyingEmailId(null); // Hide the form after submission
+    setReplyingEmailId(null);
+    setReplyingReplyId(null);
   };
 
   function toggleReplyForm(emailId: string) {
@@ -19,6 +21,16 @@ export default function UserEmailPage({ params }: { params: { id: string } }) {
       setReplyingEmailId(null);
     } else {
       setReplyingEmailId(emailId);
+      setReplyingReplyId(null);
+    }
+  };
+
+  function toggleReplyToReplyForm(replyId: string) {
+    if (replyingReplyId === replyId) {
+      setReplyingReplyId(null);
+    } else {
+      setReplyingReplyId(replyId);
+      setReplyingEmailId(null);
     }
   };
 
@@ -59,10 +71,28 @@ export default function UserEmailPage({ params }: { params: { id: string } }) {
                         <div><strong>Reply From:</strong> {reply.user.name} ({reply.user.email})</div>
                         <div dangerouslySetInnerHTML={{ __html: reply.body }} className="whitespace-pre-line" />
                         <div className="text-xs text-gray-600">At: {new Date(reply.createdAt).toLocaleString()}</div>
+                        <button
+                          onClick={() => toggleReplyToReplyForm(reply.id)}
+                          className="mt-2 bg-purple-500 text-white px-4 py-2 rounded-md"
+                        >
+                          {replyingReplyId === reply.id ? 'Cancel' : 'Reply'}
+                        </button>
+                        {replyingReplyId === reply.id && (
+                          <ReplyForm emailId={email.id} userId={userId} onReplySubmit={(reply) => handleReplySubmit(reply, email.id)} />
+                        )}
                       </li>
                     ))}
                   </ul>
                 </div>
+              )}
+              <button
+                onClick={() => toggleReplyForm(email.id)}
+                className="mt-4 bg-purple-500 text-white px-4 py-2 rounded-md"
+              >
+                {replyingEmailId === email.id ? 'Cancel' : 'Reply'}
+              </button>
+              {replyingEmailId === email.id && (
+                <ReplyForm emailId={email.id} userId={userId} onReplySubmit={(reply) => handleReplySubmit(reply, email.id)} />
               )}
             </li>
           ))}
@@ -86,6 +116,15 @@ export default function UserEmailPage({ params }: { params: { id: string } }) {
                         <div><strong>Reply From:</strong> {reply.user.name} ({reply.user.email})</div>
                         <div dangerouslySetInnerHTML={{ __html: reply.body }} className="whitespace-pre-line" />
                         <div className="text-xs text-gray-600">At: {new Date(reply.createdAt).toLocaleString()}</div>
+                        <button
+                          onClick={() => toggleReplyToReplyForm(reply.id)}
+                          className="mt-2 bg-purple-500 text-white px-4 py-2 rounded-md"
+                        >
+                          {replyingReplyId === reply.id ? 'Cancel' : 'Reply'}
+                        </button>
+                        {replyingReplyId === reply.id && (
+                          <ReplyForm emailId={email.id} userId={userId} onReplySubmit={(reply) => handleReplySubmit(reply, email.id)} />
+                        )}
                       </li>
                     ))}
                   </ul>

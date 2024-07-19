@@ -24,7 +24,28 @@ export function ReplyForm({ emailId, userId, onReplySubmit }: ReplyFormProps) {
 
     console.log('Reply Form Data:', formData);
 
-    // api call or hook will go here.
+    try {
+      const response = await fetch('/api/admin/reply', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        const newReply = await response.json();
+        console.log('Reply sent successfully', newReply);
+        setSubject('');
+        setBody('');
+        onReplySubmit(formData);
+      } else {
+        const data = await response.json();
+        console.log(`Failed to send reply: ${data.error}`);
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
