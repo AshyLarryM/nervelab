@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { isAdmin, isUser } from '@/lib/utils/admin';
 import { signOut } from 'next-auth/react';
+import toast from 'react-hot-toast';
 
 type NavItem = {
   name: string,
@@ -15,7 +16,10 @@ const adminNavigation: NavItem[] = [
   { name: "Home", href: "/" },
   { name: "About", href: "/about" },
   { name: "Admin", href: "/admin" },
-  { name: "Logout", onClick: () => signOut() },
+  { name: "Logout", onClick: () => {
+    signOut({ callbackUrl: '/', redirect: true });
+    toast.success('Logging out...');
+  }},
 ];
 
 export function AdminNavbar() {

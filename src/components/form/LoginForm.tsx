@@ -2,6 +2,7 @@
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import React, { FormEvent } from 'react'
+import toast from 'react-hot-toast';
 
 export function LoginForm() {
 
@@ -17,7 +18,9 @@ export function LoginForm() {
     });
 
     if (result?.ok) {
+      
       router.push('/');
+      toast.success('Successfully Signed In')
     } else {
       console.error('Login failed', result?.error);
     }

@@ -2,12 +2,16 @@
 import { useUsers } from '@/lib/utils/server/state/useUsers';
 import { useState } from 'react';
 import TiptapEditor from './TiptapEditor';
+import toast from 'react-hot-toast';
+import { useRouter } from 'next/navigation';
 
 export function EmailForm() {
   const [subject, setSubject] = useState<string>('');
   const [body, setBody] = useState<string>('');
   const [fromUserId, setFromUserId] = useState<string>('');
   const [toUserId, setToUserId] = useState<string>('');
+
+  const router = useRouter();
 
   const { data, error, isLoading } = useUsers();
 
@@ -21,16 +25,16 @@ export function EmailForm() {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    
+
     const formData = {
       subject,
       body,
       fromUserId,
       toUserId,
     };
-  
+
     console.log('Form Data:', formData);
-  
+
     try {
       const response = await fetch('/api/admin/emails/create', {
         method: 'POST',
@@ -39,13 +43,17 @@ export function EmailForm() {
         },
         body: JSON.stringify(formData),
       });
-  
+
       if (response.ok) {
         console.log('Email sent successfully');
+        const toUser = data?.find((user) => user.id === toUserId);
+        const toUserNameOrEmail = toUser ? toUser.name || toUser.email : 'Unknown user';
         setSubject('');
         setBody('');
         setFromUserId('');
         setToUserId('');
+        toast.success(`Email Successfully sent to ${toUserNameOrEmail}`)
+        router.push('/admin/users');
       } else {
         const data = await response.json();
         console.log(`Failed to send email: ${data.error}`);
@@ -109,7 +117,7 @@ export function EmailForm() {
             ))}
           </select>
         </div>
-       
+
         <button type="submit" className="w-full py-2 mt-4 bg-transparent border border-purple-500 text-white rounded-md transition-colors duration-200 hover:bg-purple-500 focus:outline-none focus:ring focus:ring-purple-500">
           Create Email
         </button>
