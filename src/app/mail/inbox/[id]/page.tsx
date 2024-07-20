@@ -22,7 +22,7 @@ export default function UserInboxPage() {
 
   return (
     <PageFrame showFooter={true} showNavbar={true}>
-      <div className='flex text-white max-w-full'>
+      <div className='flex text-white max-w-full h-full'>
         <MailSidebar onSelect={setSelectedFolder} selectedFolder={selectedFolder} />
         <Inbox userEmails={userEmails} selectedFolder={selectedFolder} />
       </div>

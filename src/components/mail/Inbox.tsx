@@ -23,7 +23,7 @@ export function Inbox({ userEmails, selectedFolder }: InboxProps) {
 
   return (
     <div className="w-3/4 p-4">
-      <h2 className="text-2xl font-bold">{selectedFolder === 'inbox' ? 'Received Emails' : 'Sent Emails'}</h2>
+      <h2 className="text-4xl font-bold text-white text-header-glow text-center">{selectedFolder === 'inbox' ? 'Inbox' : 'Sent Emails'}</h2>
       <div className="border-b border-gray-700">
         {emails?.map(email => (
           <div
@@ -32,7 +32,6 @@ export function Inbox({ userEmails, selectedFolder }: InboxProps) {
             className="cursor-pointer flex items-center justify-between p-2 hover:bg-gray-700"
           >
             <div className="flex items-center">
-              <input type="checkbox" className="mr-2" />
               <div className="font-bold mr-2">{selectedFolder === 'inbox' ? email.fromUser.name : email.toUser.name}</div>
               <div>{email.subject}</div>
             </div>

@@ -49,6 +49,7 @@ export default function UserEmailPage({ params }: { params: { id: string } }) {
     return <AdminPageFrame><div className="text-white text-center py-10">No emails found.</div></AdminPageFrame>;
   }
 
+
   return (
     <AdminPageFrame>
       <div className="p-4 bg-gray-50 text-gray-800">
@@ -68,7 +69,8 @@ export default function UserEmailPage({ params }: { params: { id: string } }) {
                   <ul>
                     {email.replies.map(reply => (
                       <li key={reply.id} className="mt-2 bg-gray-100 rounded-lg p-2">
-                        <div><strong>Reply From:</strong> {reply.user.name} ({reply.user.email})</div>
+                        <div><strong>Reply From: </strong> {reply.user.name} ({reply.user.email})</div>
+                        <div><strong>Subject:</strong>{reply.subject}</div>
                         <div dangerouslySetInnerHTML={{ __html: reply.body }} className="whitespace-pre-line" />
                         <div className="text-xs text-gray-600">At: {new Date(reply.createdAt).toLocaleString()}</div>
                         <button
@@ -113,7 +115,8 @@ export default function UserEmailPage({ params }: { params: { id: string } }) {
                   <ul>
                     {email.replies.map(reply => (
                       <li key={reply.id} className="mt-2 bg-gray-100 rounded-lg p-2">
-                        <div><strong>Reply From:</strong> {reply.user.name} ({reply.user.email})</div>
+                        <div><strong>Reply From: </strong> {reply.user.name} ({reply.user.email})</div>
+                        <div><strong>Subject:</strong>{reply.subject}</div>
                         <div dangerouslySetInnerHTML={{ __html: reply.body }} className="whitespace-pre-line" />
                         <div className="text-xs text-gray-600">At: {new Date(reply.createdAt).toLocaleString()}</div>
                         <button

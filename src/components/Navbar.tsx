@@ -20,20 +20,21 @@ const loggedOutNavigation: NavItem[] = [
 const userNavigation: NavItem[] = [
   { name: "Home", href: "/" },
   { name: "About", href: "/about" },
-  { name: "Logout", onClick: () => signOut() },
+  { name: "Logout", onClick: () => signOut({ callbackUrl: '/', redirect: true }) },
 ];
 
 const adminNavigation: NavItem[] = [
   { name: "Home", href: "/" },
   { name: "About", href: "/about" },
   { name: "Admin Dashboard", href: "/admin" },
-  { name: "Logout", onClick: () => signOut() },
+  { name: "Logout", onClick: () => signOut({ callbackUrl: '/', redirect: true })},
 ];
 
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const [shouldRenderMenu, setShouldRenderMenu] = useState<boolean>(false);
   const { data: session } = useSession();
+
 
   function toggleMenu() {
     if (!isMenuOpen) {
