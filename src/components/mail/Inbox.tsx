@@ -19,23 +19,35 @@ export function Inbox({ userEmails, selectedFolder }: InboxProps) {
     }
   };
 
+  function formatDateTime(dateString: string) {
+    const date = new Date(dateString);
+    const now = new Date();
+    const isOlderThan24Hours = (now.getTime() - date.getTime()) > 24 * 60 * 60 * 1000;
+
+    if (isOlderThan24Hours) {
+      return date.toLocaleDateString();
+    } else {
+      return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    }
+  }
+
   const emails = selectedFolder === 'inbox' ? userEmails?.receivedEmails : userEmails.sentEmails;
 
   return (
     <div className="w-3/4 p-4">
-      <h2 className="text-4xl font-bold text-white text-header-glow text-center">{selectedFolder === 'inbox' ? 'Inbox' : 'Sent Emails'}</h2>
-      <div className="border-b border-gray-700">
+      <h2 className="text-4xl font-bold text-white text-header-glow text-center mb-4">{selectedFolder === 'inbox' ? 'Inbox' : 'Sent Emails'}</h2>
+      <div>
         {emails?.map(email => (
           <div
             key={email.id}
             onClick={() => handleEmailClick(email)}
-            className="cursor-pointer flex items-center justify-between p-2 hover:bg-gray-700"
+            className={`cursor-pointer flex items-center justify-between p-2 border border-gray-700 hover:bg-gray-700 ${selectedEmail?.id === email.id ? 'bg-gray-700' : ''}`}
           >
             <div className="flex items-center">
-              <div className="font-bold mr-2">{selectedFolder === 'inbox' ? email.fromUser.name : email.toUser.name}</div>
-              <div>{email.subject}</div>
+              <div className="font-bold mr-2 text-xl p-1">{selectedFolder === 'inbox' ? email.fromUser.name : email.toUser.name}</div>
+              <div className='text-xl font-thin'>- {email.subject}</div>
             </div>
-            <div>{new Date(email.createdAt).toLocaleTimeString()}</div>
+            <div>{formatDateTime(email.createdAt)}</div>
           </div>
         ))}
       </div>

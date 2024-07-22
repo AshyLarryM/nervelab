@@ -26,13 +26,13 @@ export function MailSidebar({ onSelect, selectedFolder }: MailSidebarProps) {
       </div>
       <ul>
         <li
-          className={`cursor-pointer p-2 ${selectedFolder === 'inbox' ? 'bg-gray-700' : ''}`}
+          className={`cursor-pointer p-2 ${selectedFolder === 'inbox' ? 'bg-purple-700' : ''}`}
           onClick={() => onSelect('inbox')}
         >
           Inbox
         </li>
         <li
-          className={`cursor-pointer p-2 ${selectedFolder === 'sent' ? 'bg-gray-700' : ''}`}
+          className={`cursor-pointer p-2 ${selectedFolder === 'sent' ? 'bg-purple-700' : ''}`}
           onClick={() => onSelect('sent')}
         >
           Sent Mail
