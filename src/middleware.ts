@@ -16,7 +16,7 @@ export async function middleware(request: NextRequest) {
 
   const adminPaths = ['/admin', '/register'];
   
-  const userPaths = ['/user'];
+  const userPaths = ['/mail'];
 
   if (adminPaths.some(path => request.nextUrl.pathname.startsWith(path)) && !isAdmin) {
     console.log('Access to admin path denied');
@@ -34,5 +34,5 @@ export async function middleware(request: NextRequest) {
 
 // Define the paths where the middleware should be applied
 export const config = {
-  matcher: ['/admin/:path*', '/user/:path*'],
+  matcher: ['/admin/:path*', '/mail/:path*'],
 };
