@@ -22,7 +22,7 @@ export default function Home() {
   }
 
   return (
-    <PageFrame showNavbar={true} showFooter={true}>
+    <PageFrame showNavbar={true} showFooter={true} showParticles={true} >
       <div className="flex justify-center text-white z-20 sm:mx-16 mx-0">
         <Hero />
       </div>
