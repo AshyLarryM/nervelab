@@ -23,7 +23,7 @@ export function EmailForm() {
     return <p>Error loading users: {error.message}</p>;
   }
 
-  const handleSubmit = async (e: any) => {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
     const formData = {
@@ -56,17 +56,24 @@ export function EmailForm() {
         router.push('/admin/users');
       } else {
         const data = await response.json();
-        console.log(`Failed to send email: ${data.error}`);
+        toast.error(`Failed to send email: ${data.error}`)
       }
     } catch (error) {
       console.error(error);
+      if (error instanceof Error) {
+        console.error('Error:', error.message);
+        toast.error(`An error occurred: ${error.message}`);
+      } else {
+        console.error('Unexpected error:', error);
+        toast.error('An unexpected error occurred');
+      }
     }
   };
 
   return (
-    <div className=''>
+    <div>
       <form onSubmit={handleSubmit} className="max-w-5xl mx-auto p-6">
-        <h1 className='text-center text-white text-3xl text-header-glow'>Create Email Chain</h1>
+        <h1 className='text-center text-white text-4xl text-header-glow'>Create Email</h1>
         <div className="mb-4">
           <label className="block text-gray-300">From:</label>
           <select

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import TiptapEditor from "./TiptapEditor";
+import toast from "react-hot-toast";
 
 interface ReplyFormProps {
   emailId: string;
@@ -36,20 +37,28 @@ export function ReplyForm({ emailId, userId, onReplySubmit }: ReplyFormProps) {
       if (response.ok) {
         const newReply = await response.json();
         console.log('Reply sent successfully', newReply);
+        toast.success(`Reply Sent!`)
         setSubject('');
         setBody('');
         onReplySubmit(formData);
       } else {
         const data = await response.json();
-        console.log(`Failed to send reply: ${data.error}`);
+        toast.error(`Failed to send reply: ${data.error}`);
       }
     } catch (error) {
       console.error(error);
+      if (error instanceof Error) {
+        console.error('Error:', error.message);
+        toast.error(`An error occurred: ${error.message}`);
+      } else {
+        console.error('Unexpected error:', error);
+        toast.error('An unexpected error occurred');
+      }
     }
   };
 
   return (
-    <form onSubmit={handleSubmit} className=" p-6 mt-6 bg-gray-800 rounded-lg">
+    <form onSubmit={handleSubmit} className="border border-gray-500 p-6 mt-6 bg-gray-900 rounded-lg">
       <h2 className=' text-white text-2xl mb-4'>Reply to Email</h2>
       <div className="mb-4">
         <label className="block text-gray-300">Subject:</label>

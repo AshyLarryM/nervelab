@@ -49,15 +49,14 @@ export default function UserEmailPage({ params }: { params: { id: string } }) {
     return <AdminPageFrame><div className="text-white text-center py-10">No emails found.</div></AdminPageFrame>;
   }
 
-
   return (
     <AdminPageFrame>
-      <div className="p-4 bg-gray-50 text-gray-800">
+      <div className="p-4 bg-gray-950 text-gray-50">
         <h1 className="text-xl font-bold mb-4">Emails for {data.userEmails.name}</h1>
         <h2 className="text-lg font-semibold mb-2">Sent Emails</h2>
         <ul>
           {sentEmails?.map(email => (
-            <li key={email.id} className="mb-4 p-4 bg-white shadow-md rounded-lg">
+            <li key={email.id} className="mb-4 p-4 bg-gray-900 shadow-md rounded-lg border border-green-400">
               <strong>From:</strong> {email.fromUser.name} ({email.fromUser.email})<br />
               <strong>To:</strong> {email.toUser.name} ({email.toUser.email})<br />
               <strong>Subject:</strong> {email.subject}<br />
@@ -68,16 +67,16 @@ export default function UserEmailPage({ params }: { params: { id: string } }) {
                 <div className="mt-4">
                   <ul>
                     {email.replies.map(reply => (
-                      <li key={reply.id} className="mt-2 bg-gray-100 rounded-lg p-2">
+                      <li key={reply.id} className="mt-2 bg-gray-800 border border-purple-400 rounded-lg p-6">
                         <div><strong>Reply From: </strong> {reply.user.name} ({reply.user.email})</div>
                         <div><strong>Subject:</strong>{reply.subject}</div>
                         <div dangerouslySetInnerHTML={{ __html: reply.body }} className="whitespace-pre-line" />
-                        <div className="text-xs text-gray-600">At: {new Date(reply.createdAt).toLocaleString()}</div>
+                        <div className="text-xs text-white">At: {new Date(reply.createdAt).toLocaleString()}</div>
                         <button
                           onClick={() => toggleReplyToReplyForm(reply.id)}
-                          className="mt-2 bg-purple-500 text-white px-4 py-2 rounded-md"
+                          className="block mt-2 bg-purple-500 text-white px-4 py-2 rounded-md"
                         >
-                          {replyingReplyId === reply.id ? 'Cancel' : 'Reply'}
+                          {replyingReplyId === reply.id ? 'Cancel' : 'Reply to Reply'}
                         </button>
                         {replyingReplyId === reply.id && (
                           <ReplyForm emailId={email.id} userId={userId} onReplySubmit={(reply) => handleReplySubmit(reply, email.id)} />
@@ -89,9 +88,9 @@ export default function UserEmailPage({ params }: { params: { id: string } }) {
               )}
               <button
                 onClick={() => toggleReplyForm(email.id)}
-                className="mt-4 bg-purple-500 text-white px-4 py-2 rounded-md"
+                className="block mt-4 bg-purple-500 text-white px-4 py-2 rounded-md"
               >
-                {replyingEmailId === email.id ? 'Cancel' : 'Reply'}
+                {replyingEmailId === email.id ? 'Cancel' : 'Reply to Original'}
               </button>
               {replyingEmailId === email.id && (
                 <ReplyForm emailId={email.id} userId={userId} onReplySubmit={(reply) => handleReplySubmit(reply, email.id)} />
@@ -103,7 +102,7 @@ export default function UserEmailPage({ params }: { params: { id: string } }) {
         <h2 className="text-lg font-semibold mb-2">Received Emails</h2>
         <ul>
           {receivedEmails?.map(email => (
-            <li key={email.id} className="mb-4 p-4 bg-white shadow-md rounded-lg">
+            <li key={email.id} className="mb-4 p-4 bg-gray-900 text-gray-50 shadow-md rounded-lg border border-green-400">
               <strong>From:</strong> {email.fromUser.name} ({email.fromUser.email})<br />
               <strong>To:</strong> {email.toUser.name} ({email.toUser.email})<br />
               <strong>Subject:</strong> {email.subject}<br />
@@ -111,19 +110,19 @@ export default function UserEmailPage({ params }: { params: { id: string } }) {
               <div dangerouslySetInnerHTML={{ __html: email.body }} className="whitespace-pre-line" /><br />
               <strong>Received At:</strong> {new Date(email.createdAt).toLocaleString()}
               {email.replies && email.replies.length > 0 && (
-                <div className="mt-4">
+                <div className="my-4">
                   <ul>
                     {email.replies.map(reply => (
-                      <li key={reply.id} className="mt-2 bg-gray-100 rounded-lg p-2">
+                      <li key={reply.id} className="mt-2 bg-gray-800 text-gray-50 border border-purple-400 rounded-lg p-6">
                         <div><strong>Reply From: </strong> {reply.user.name} ({reply.user.email})</div>
                         <div><strong>Subject:</strong>{reply.subject}</div>
                         <div dangerouslySetInnerHTML={{ __html: reply.body }} className="whitespace-pre-line" />
-                        <div className="text-xs text-gray-600">At: {new Date(reply.createdAt).toLocaleString()}</div>
+                        <div className="text-xs text-white">At: {new Date(reply.createdAt).toLocaleString()}</div>
                         <button
                           onClick={() => toggleReplyToReplyForm(reply.id)}
-                          className="mt-2 bg-purple-500 text-white px-4 py-2 rounded-md"
+                          className="block mt-6 bg-purple-500 text-white px-4 py-2 rounded-md"
                         >
-                          {replyingReplyId === reply.id ? 'Cancel' : 'Reply'}
+                          {replyingReplyId === reply.id ? 'Cancel' : 'Reply to Reply'}
                         </button>
                         {replyingReplyId === reply.id && (
                           <ReplyForm emailId={email.id} userId={userId} onReplySubmit={(reply) => handleReplySubmit(reply, email.id)} />
@@ -135,9 +134,9 @@ export default function UserEmailPage({ params }: { params: { id: string } }) {
               )}
               <button
                 onClick={() => toggleReplyForm(email.id)}
-                className="mt-4 bg-purple-500 text-white px-4 py-2 rounded-md"
+                className="block mt-4 bg-purple-500 text-white px-4 py-2 rounded-md"
               >
-                {replyingEmailId === email.id ? 'Cancel' : 'Reply'}
+                {replyingEmailId === email.id ? 'Cancel' : 'Reply to Original'}
               </button>
               {replyingEmailId === email.id && (
                 <ReplyForm emailId={email.id} userId={userId} onReplySubmit={(reply) => handleReplySubmit(reply, email.id)} />
