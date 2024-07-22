@@ -21,6 +21,9 @@ export async function  GET(req: NextRequest, { params }: { params: { id: string 
           },
         },
       },
+      orderBy: {
+        createdAt: 'desc',
+      }
     });
 
     return NextResponse.json({ receivedEmails });
