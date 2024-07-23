@@ -2,7 +2,9 @@ import { useQuery, useMutation, useQueryClient } from 'react-query';
 import { SafeUser } from '../types';
 
 async function fetchUsers(): Promise<SafeUser[]> {
-  const response = await fetch('/api/admin/users');
+  const response = await fetch('/api/admin/users', {
+    cache: 'no-store'
+  });
   if (!response.ok) {
     throw new Error('Network response was not ok');
   }
