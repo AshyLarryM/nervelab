@@ -1,7 +1,6 @@
 'use client'
-import React, { useState } from 'react'
 import Link from 'next/link';
-import { useUsers, useUpdateUser } from '@/lib/utils/server/state/useUsers';
+import { useUsers } from '@/lib/utils/server/state/useUsers';
 
 export default function UsersTable() {
 

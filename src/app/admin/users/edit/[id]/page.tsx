@@ -12,7 +12,7 @@ export default async function EditUserPage({ params }: { params: { id: string } 
 }
 
 async function getUserDataById(id: string) {
-  const url = `${process.env.NEXTAUTH_URL}/api/admin/users/${id}`;
+  const url = `${process.env.BASE_URL}/api/admin/users/${id}`;
   console.log('Fetching user data from URL:', url);
 
   try {
