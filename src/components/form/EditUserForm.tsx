@@ -1,6 +1,7 @@
 'use client'
 import { useRouter } from 'next/navigation';
 import React, { FormEvent, useState } from 'react';
+import toast from 'react-hot-toast';
 
 interface EditUserFormProps {
   initialData: {
@@ -41,8 +42,10 @@ export function EditUserForm({ initialData }: EditUserFormProps) {
 
     if (response.ok) {
       router.push('/admin/users');
+      toast.success(`User: ${email} updated successfully!`)
     } else {
       console.error('Failed to update user');
+      toast.error(`Failed to Update User: ${email}`)
     }
   }
 

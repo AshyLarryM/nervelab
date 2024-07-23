@@ -16,6 +16,9 @@ export async function GET(req: NextRequest, { params }: { params: { id: string }
         name: true,
         email: true,
         sentEmails: {
+          orderBy: {
+            createdAt: "desc"
+          },
           include: {
             fromUser: {
               select: {
@@ -42,6 +45,9 @@ export async function GET(req: NextRequest, { params }: { params: { id: string }
           }
         },
         receivedEmails: {
+          orderBy: {
+            createdAt: "desc"
+          },
           include: {
             fromUser: {
               select: {
@@ -66,7 +72,7 @@ export async function GET(req: NextRequest, { params }: { params: { id: string }
               }
             },
           },
-        }
+        },
       }
     });
 

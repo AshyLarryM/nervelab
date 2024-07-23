@@ -1,6 +1,7 @@
 'use client'
 import { useRouter } from 'next/navigation';
 import React, { FormEvent } from 'react'
+import toast from 'react-hot-toast';
 
 export function RegisterForm() {
 
@@ -9,17 +10,33 @@ export function RegisterForm() {
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    const response = await fetch('/api/auth/register', {
-      method: 'POST',
-      body: JSON.stringify({
-        name: formData.get('name'),
-        email: formData.get('email'),
-        password: formData.get('password'),
-      }),
-    });
-    console.log({ response });
-    
-    router.push('/admin/users')
+    try {
+      const response = await fetch('/api/auth/register', {
+        method: 'POST',
+        body: JSON.stringify({
+          name: formData.get('name'),
+          email: formData.get('email'),
+          password: formData.get('password'),
+        }),
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      });
+
+      if (response.ok) {
+        toast.success('User created successfully!');
+        router.push('/admin/users');
+      } else {
+        const errorData = await response.json();
+        toast.error(`Error: ${errorData.message}`);
+      }
+    } catch (error) {
+      if (error instanceof Error) {
+        toast.error(`Error: ${error.message}`);
+      } else {
+        toast.error('An unknown error occurred');
+      }
+    }
   }
 
   return (
@@ -28,17 +45,17 @@ export function RegisterForm() {
         <div className="my-4">
           <h1 className='text-white text-header-glow font-semibold text-4xl text-center'>New User</h1>
           <div className="mt-6">
-          <label htmlFor="name" className="block text-white text-sm font-bold mb-2">
-            Name
-          </label>
-          <input
-            required={true}
-            id="name"
-            type="name"
-            name="name"
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-          />
-        </div>
+            <label htmlFor="name" className="block text-white text-sm font-bold mb-2">
+              Name
+            </label>
+            <input
+              required={true}
+              id="name"
+              type="name"
+              name="name"
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+            />
+          </div>
           <label htmlFor="email" className="block text-white text-sm font-bold mb-2">
             Email
           </label>

@@ -51,7 +51,7 @@ export default function UserEmailPage({ params }: { params: { id: string } }) {
 
   return (
     <AdminPageFrame>
-      <div className="p-4 bg-gray-950 text-gray-50">
+      <div className="p-4  text-gray-50">
         <h1 className="text-xl font-bold mb-4">Emails for {data.userEmails.name}</h1>
         <h2 className="text-lg font-semibold mb-2">Sent Emails</h2>
         <ul>
