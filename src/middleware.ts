@@ -14,7 +14,7 @@ export async function middleware(request: NextRequest) {
   const isAdmin = token.role === 'Admin';
   const isUser = token.role === 'User';
 
-  const adminPaths = ['/admin', '/register'];
+  const adminPaths = [ '/register'];
   
   const userPaths = ['/mail'];
 
@@ -34,5 +34,5 @@ export async function middleware(request: NextRequest) {
 
 // Define the paths where the middleware should be applied
 export const config = {
-  matcher: ['/admin/:path*', '/mail/:path*'],
+  matcher: [ '/mail/:path*'],
 };
