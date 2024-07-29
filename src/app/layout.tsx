@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Orbitron } from "next/font/google";
+import { Orbitron } from "next/font/google";
 import "./globals.css";
 import NextAuthProvider from "@/components/NextAuthProvider";
 import { ReactQueryProvider } from "@/components/ReactQueryProvider";
@@ -20,7 +20,7 @@ const toastOptions = {
   },
   success: {
     style: {
-      background: "transparent",
+      background: "black",
     },
   },
   error: {

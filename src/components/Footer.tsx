@@ -16,7 +16,7 @@ export function Footer() {
               © 2024 Nerve Lab. All rights Reserved
             </p>
             <Link className='underline hover:text-white mr-2' href="/about">About</Link>
-            <Link className='underline hover:text-white mr-2' href="/signin">Sign In</Link>
+            <Link className='underline hover:text-white mr-2' href="/login">Sign In</Link>
             <div className="flex justify-center">
               <Link href='https://store.steampowered.com/app/2512660/VectorBall/'><FontAwesomeIcon icon={faSteam} className="h-6 sm:h-8 text-white/90 hover:text-white mx-4" /></Link>
               <Link href='https://www.instagram.com/vectorball.exe/'><FontAwesomeIcon icon={faInstagram} className="h-6 sm:h-8 text-white/85 hover:text-white mx-4" /></Link>
