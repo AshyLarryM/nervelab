@@ -2,13 +2,16 @@
 import React, { useState } from 'react';
 import { EmailCard } from './EmailCard';
 import { UserEmails, EmailWithReplies } from '@/lib/utils/server/types';
+import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
 
 interface InboxProps {
   userEmails: UserEmails;
   selectedFolder: 'inbox' | 'sent';
+  toggleSidebar: () => void;
+  isSidebarOpen: boolean;
 }
 
-export function Inbox({ userEmails, selectedFolder }: InboxProps) {
+export function Inbox({ userEmails, selectedFolder, toggleSidebar, isSidebarOpen }: InboxProps) {
   const [selectedEmail, setSelectedEmail] = useState<EmailWithReplies | null>(null);
 
   function handleEmailClick(email: EmailWithReplies) {
@@ -17,45 +20,67 @@ export function Inbox({ userEmails, selectedFolder }: InboxProps) {
     } else {
       setSelectedEmail(email);
     }
-  };
+  }
 
   function formatDateTime(dateString: string) {
     const date = new Date(dateString);
     const now = new Date();
     const isOlderThan24Hours = (now.getTime() - date.getTime()) > 24 * 60 * 60 * 1000;
 
-    if (isOlderThan24Hours) {
-      return date.toLocaleDateString();
-    } else {
-      return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-    }
+    return isOlderThan24Hours
+      ? new Intl.DateTimeFormat('en-US', { month: 'numeric', day: 'numeric', year: '2-digit' }).format(date)
+      : date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
   }
 
   const emails = selectedFolder === 'inbox' ? userEmails?.receivedEmails : userEmails.sentEmails;
 
   return (
-    <div className="w-3/4 p-4">
-      <h2 className="text-4xl font-bold text-white text-header-glow text-center mb-4">{selectedFolder === 'inbox' ? 'Inbox' : 'Sent Emails'}</h2>
+    <div className="w-full p-4">
+      <div className="flex items-center mb-4">
+        <button onClick={toggleSidebar} className="text-white flex items-center  md:hidden">
+          {isSidebarOpen ? (
+            <ChevronLeftIcon className="h-5 w-5 mr-2 text-green-300" />
+          ) : (
+            <ChevronRightIcon className="h-5 w-5 mr-2 text-green-300" />
+          )}
+        </button>
+        <h2 className="font-bold text-white text-header-glow text-center sm:text-4xl text-3xl flex-grow">
+          {selectedFolder === 'inbox' ? 'Inbox' : 'Sent Emails'}
+        </h2>
+      </div>
       <div>
-        {emails?.map(email => (
-          <div
-            key={email.id}
-            onClick={() => handleEmailClick(email)}
-            className={`cursor-pointer flex items-center justify-between p-2 border border-gray-700 hover:bg-gray-700 ${selectedEmail?.id === email.id ? 'bg-gray-700' : ''}`}
-          >
-            <div className="flex items-center">
-              <div className="font-bold mr-2 text-xl p-1">{selectedFolder === 'inbox' ? email.fromUser.name : email.toUser.name}</div>
-              <div className='text-xl font-thin'>- {email.subject}</div>
+        {emails?.map((email) => (
+          <div key={email.id}>
+            <div
+              onClick={() => handleEmailClick(email)}
+              className={`cursor-pointer flex flex-col sm:flex-row items-start sm:items-center justify-between p-2 border border-gray-700 hover:bg-gray-700 
+                ${selectedEmail?.id === email.id ? 'bg-gray-700' : ''}`}
+            >
+              <div className="flex flex-col sm:flex-row sm:items-center w-full">
+                <div className="flex justify-between w-full sm:w-auto">
+                  <div className="font-bold text-md sm:text-xl">
+                    {selectedFolder === 'inbox' ? email.fromUser.name : email.toUser.name}
+                  </div>
+                  <div className="text-sm sm:text-right sm:ml-4 block sm:hidden">
+                    {formatDateTime(email.createdAt)}
+                  </div>
+                </div>
+                <div className="sm:ml-6 text-gray-400 sm:text-left truncate overflow-hidden text-ellipsis w-full sm:w-auto">
+                  {email.subject}
+                </div>
+                <div className="text-sm sm:text-right hidden sm:flex ml-auto">
+                  {formatDateTime(email.createdAt)}
+                </div>
+              </div>
             </div>
-            <div>{formatDateTime(email.createdAt)}</div>
+            {selectedEmail?.id === email.id && (
+              <div className="mt-2">
+                <EmailCard email={selectedEmail} />
+              </div>
+            )}
           </div>
         ))}
       </div>
-      {selectedEmail && (
-        <div className="mt-4">
-          <EmailCard email={selectedEmail} />
-        </div>
-      )}
     </div>
   );
 }
