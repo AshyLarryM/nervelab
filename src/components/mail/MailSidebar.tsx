@@ -19,10 +19,10 @@ export function MailSidebar({ onSelect, selectedFolder }: MailSidebarProps) {
   }
 
   return (
-    <div className="w-1/3 sm:w-1/5 border-r border-gray-700 p-4">
+    <div className="w-1/4 sm:w-1/5 md:w-1/6 lg:w-1/5 xl:w-1/6 border-r border-gray-700 p-4">
       <h2 className="text-2xl font-bold mb-4 text-glow text-center hidden sm:block">VECTORBALL</h2>
       <div className='flex justify-center'>
-        <button onClick={showAccessDeniedModal} className='my-4 bg-transparent border border-purple-500 p-2 sm:p-4 text-sm sm:text-lg rounded-md button-glow hover:bg-purple-500'>Compose</button>
+        <button onClick={showAccessDeniedModal} className='my-4 bg-transparent border border-purple-500 p-1.5 sm:p-4 text-xs sm:text-lg rounded-md button-glow hover:bg-purple-500'>Compose</button>
       </div>
       <ul>
         <li
