@@ -1,3 +1,4 @@
+// UserInboxPage.tsx
 'use client'
 import PageFrame from '@/components/layouts/PageFrame';
 import React, { useState } from 'react';
@@ -9,6 +10,7 @@ import { useReceivedEmails } from '@/lib/utils/server/state/useReceivedEmails';
 
 export default function UserInboxPage() {
   const [selectedFolder, setSelectedFolder] = useState<'inbox' | 'sent'>('inbox');
+  const [isSidebarVisible, setIsSidebarVisible] = useState(true);
 
   const { data: session } = useSession();
   const userId = session?.user?.id;
@@ -18,13 +20,13 @@ export default function UserInboxPage() {
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error loading emails</div>;
 
-  console.log(userEmails);
+  const toggleSidebar = () => setIsSidebarVisible(prev => !prev);
 
   return (
     <PageFrame showFooter={true} showNavbar={true}>
       <div className='flex text-white max-w-full h-full'>
-        <MailSidebar onSelect={setSelectedFolder} selectedFolder={selectedFolder} />
-        <Inbox userEmails={userEmails} selectedFolder={selectedFolder} />
+        {isSidebarVisible && <MailSidebar onSelect={setSelectedFolder} selectedFolder={selectedFolder} />}
+        <Inbox userEmails={userEmails} selectedFolder={selectedFolder} isSidebarVisible={isSidebarVisible} toggleSidebar={toggleSidebar} />
       </div>
     </PageFrame>
   );

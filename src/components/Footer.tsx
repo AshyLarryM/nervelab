@@ -4,8 +4,13 @@ import { faXTwitter } from "@fortawesome/free-brands-svg-icons/faXTwitter";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import React from "react";
+import { signOut, useSession } from "next-auth/react";
 
 export function Footer() {
+
+  const { data: session } = useSession();
+
+
   return (
     <footer className="flex justify-center items-center  text-white/90 z-50">
       <div className="w-full">
@@ -16,7 +21,18 @@ export function Footer() {
               © 2024 Nerve Lab. All rights Reserved
             </p>
             <Link className='underline hover:text-white mr-2' href="/about">About</Link>
-            <Link className='underline hover:text-white mr-2' href="/login">Sign In</Link>
+            {session ? (
+              <button
+                className="underline hover:text-white mr-2 text-glow"
+                onClick={() => signOut()}
+              >
+                Logout
+              </button>
+            ) : (
+              <Link className="underline hover:text-white mr-2" href="/login">
+                Sign In
+              </Link>
+            )}
             <div className="flex justify-center">
               <Link href='https://store.steampowered.com/app/2512660/VectorBall/'><FontAwesomeIcon icon={faSteam} className="h-6 sm:h-8 text-white/90 hover:text-white mx-4" /></Link>
               <Link href='https://www.instagram.com/vectorball.exe/'><FontAwesomeIcon icon={faInstagram} className="h-6 sm:h-8 text-white/85 hover:text-white mx-4" /></Link>
