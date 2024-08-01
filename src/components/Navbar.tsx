@@ -30,7 +30,7 @@ const userNavigation: NavItem[] = [
 const adminNavigation: NavItem[] = [
   { name: "Home", href: "/" },
   { name: "About", href: "/about" },
-  { name: "Admin", href: "/admin" },
+  { name: "Admin", href: "/admin/users" },
   { name: "Logout", onClick: () => {
     signOut({ callbackUrl: '/', redirect: true });
     toast.success('Logging out...');

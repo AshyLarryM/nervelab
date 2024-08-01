@@ -87,3 +87,33 @@ export async function GET(req: NextRequest, { params }: { params: { id: string }
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }
+
+export async function DELETE(req: NextRequest, { params }: { params: { id: string } }) {
+  const { id } = params;
+
+  if (!id || typeof id !== 'string') {
+    return NextResponse.json({ error: 'Invalid email ID' }, { status: 400 });
+  }
+
+  try {
+    // Attempt to delete the email by ID
+    const deletedEmail = await prisma.email.delete({
+      where: { id },
+    });
+
+    if (!deletedEmail) {
+      return NextResponse.json({ error: 'Email not found' }, { status: 404 });
+    }
+
+    return NextResponse.json({ message: 'Email deleted successfully' }, { status: 200 });
+  } catch (error) {
+    console.error('Failed to delete email:', error);
+    if (error instanceof Error && 'code' in error) {
+      const prismaError = error as { code: string };
+      if (prismaError.code === 'P2003') {
+        return NextResponse.json({ error: 'You need to delete replies before you can delete the email chain' }, { status: 400 });
+      }
+    }
+    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+  }
+}

@@ -1,3 +1,4 @@
+'use client'
 import { useState } from "react";
 import TiptapEditor from "./TiptapEditor";
 import toast from "react-hot-toast";

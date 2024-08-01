@@ -1,12 +1,15 @@
 'use client';
 import AdminPageFrame from '@/components/admin/AdminPageFrame';
 import { ReplyForm } from '@/components/form/ReplyForm';
-import { useUserEmails } from '@/lib/utils/server/state/useUserEmails';
+import { useDeleteReply } from '@/lib/utils/server/state/useDeleteReply';
+import { useDeleteEmail, useUserEmails } from '@/lib/utils/server/state/useUserEmails';
 import React, { useState } from 'react';
 
 export default function UserEmailPage({ params }: { params: { id: string } }) {
   const userId = params.id;
   const { data, isLoading, isError, error } = useUserEmails(userId);
+  const { deleteEmail } = useDeleteEmail();
+  const { mutate: deleteReply } = useDeleteReply();
   const [replyingEmailId, setReplyingEmailId] = useState<string | null>(null);
   const [replyingReplyId, setReplyingReplyId] = useState<string | null>(null);
 
@@ -14,7 +17,7 @@ export default function UserEmailPage({ params }: { params: { id: string } }) {
     console.log('Reply submitted:', reply);
     setReplyingEmailId(null);
     setReplyingReplyId(null);
-  };
+  }
 
   function toggleReplyForm(emailId: string) {
     if (replyingEmailId === emailId) {
@@ -23,7 +26,7 @@ export default function UserEmailPage({ params }: { params: { id: string } }) {
       setReplyingEmailId(emailId);
       setReplyingReplyId(null);
     }
-  };
+  }
 
   function toggleReplyToReplyForm(replyId: string) {
     if (replyingReplyId === replyId) {
@@ -32,7 +35,7 @@ export default function UserEmailPage({ params }: { params: { id: string } }) {
       setReplyingReplyId(replyId);
       setReplyingEmailId(null);
     }
-  };
+  }
 
   if (isLoading) {
     return <AdminPageFrame><div className="text-center py-10 text-white">Loading...</div></AdminPageFrame>;
@@ -51,7 +54,7 @@ export default function UserEmailPage({ params }: { params: { id: string } }) {
 
   return (
     <AdminPageFrame>
-      <div className="p-4  text-gray-50">
+      <div className="p-4 text-gray-50">
         <h1 className="text-xl font-bold mb-4">Emails for {data.userEmails.name}</h1>
         <h2 className="text-lg font-semibold mb-2">Sent Emails</h2>
         <ul>
@@ -95,6 +98,12 @@ export default function UserEmailPage({ params }: { params: { id: string } }) {
               {replyingEmailId === email.id && (
                 <ReplyForm emailId={email.id} userId={userId} onReplySubmit={(reply) => handleReplySubmit(reply, email.id)} />
               )}
+              <button
+                onClick={() => deleteEmail(userId, email.id)}
+                className="block mt-2 bg-red-500 text-white px-4 py-2 rounded-md"
+              >
+                Delete Email
+              </button>
             </li>
           ))}
         </ul>
@@ -114,6 +123,12 @@ export default function UserEmailPage({ params }: { params: { id: string } }) {
                   <ul>
                     {email.replies.map(reply => (
                       <li key={reply.id} className="mt-2 bg-gray-800 text-gray-50 border border-purple-400 rounded-lg p-6">
+                        <button
+                          onClick={() => deleteReply(reply.id)}
+                          className="block mt-2 bg-red-500 text-white px-4 py-2 rounded-md"
+                        >
+                          Delete Reply
+                        </button>
                         <div><strong>Reply From: </strong> {reply.user.name} ({reply.user.email})</div>
                         <div><strong>Subject:</strong>{reply.subject}</div>
                         <div dangerouslySetInnerHTML={{ __html: reply.body }} className="whitespace-pre-line" />
@@ -141,6 +156,12 @@ export default function UserEmailPage({ params }: { params: { id: string } }) {
               {replyingEmailId === email.id && (
                 <ReplyForm emailId={email.id} userId={userId} onReplySubmit={(reply) => handleReplySubmit(reply, email.id)} />
               )}
+              <button
+                onClick={() => deleteEmail(userId, email.id)}
+                className="block mt-2 bg-red-500 text-white px-4 py-2 rounded-md"
+              >
+                Delete Email
+              </button>
             </li>
           ))}
         </ul>
