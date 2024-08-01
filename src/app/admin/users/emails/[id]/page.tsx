@@ -71,6 +71,12 @@ export default function UserEmailPage({ params }: { params: { id: string } }) {
                   <ul>
                     {email.replies.map(reply => (
                       <li key={reply.id} className="mt-2 bg-gray-800 border border-purple-400 rounded-lg p-6">
+                        <button
+                          onClick={() => deleteReply(reply.id)}
+                          className="block mt-2 bg-red-500 text-white px-4 py-2 rounded-md"
+                        >
+                          Delete Reply
+                        </button>
                         <div><strong>Reply From: </strong> {reply.user.name} ({reply.user.email})</div>
                         <div><strong>Subject:</strong>{reply.subject}</div>
                         <div dangerouslySetInnerHTML={{ __html: reply.body }} className="whitespace-pre-line" />
