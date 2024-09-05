@@ -24,3 +24,10 @@ For a brief background, Nerve Lab is a game studio, and their game "Vector Ball"
 - Once a user has been created, we can create an email to send to another user.  The email can be "sent" between any users, the objective is to allow the Admin to create email chains between 2 different users (Nerve Lab employees) so we don't need to log in as each user to send an email.
 - The email creation form includes a rich text editor give our emails the proper appearance of an email and store the email as HTML in the database.
 <img width="1725" alt="Screenshot 2024-09-05 at 11 58 44 AM" src="https://github.com/user-attachments/assets/2e9eedff-9916-4010-bad5-22c52f55f162">
+### Viewing Sent Emails in Admin Portal
+- As we can see in the image below, all HTML was preserved by the rich text editor for reading emails.
+<img width="1719" alt="Screenshot 2024-09-05 at 12 08 19 PM" src="https://github.com/user-attachments/assets/ddc29213-514c-4c48-aaf6-78cda3cad4e5">
+- In this emails page we can also reply to emails, thus creating a full email chain.  Admins can also delete, reply to replies, or reply to the original email (1st email in email chain)
+<img width="1714" alt="Screenshot 2024-09-05 at 12 12 23 PM" src="https://github.com/user-attachments/assets/0053a72e-5e8a-4971-8555-eeca6bd5e1d8">
+<img width="1709" alt="Screenshot 2024-09-05 at 12 12 59 PM" src="https://github.com/user-attachments/assets/e981a133-7f23-4460-81ad-db579cf0b4da">
+
