@@ -14,6 +14,13 @@ An email management tool for administrators to create accounts, create emails, a
 For a brief background, Nerve Lab is a game studio, and their game "Vector Ball" is a PC game available on Steam. Within Vector Ball there is an underlying story of how the main A.I. instructor is starting to change underlying Nerve Lab and Vector Ball infrastructure without the game studio's consent. The email Manager tool was created to give game users access to Nerve Lab's "emails" to find clues that are usable for in game easter eggs, and continue the overall story of the A.I. taking over the game studio's systems.
 
 ## Features
+### Admin Portal
 - To get started an Admin Account has been seeded to the SQL database.  This is done because account creation is only possible from an Admin account, since the application has a fixed number of user accounts to account for each Nerve Lab employee email login.
-- Once logged in as an Admin, new users can be created in the Admin Portal by clicking "Add User".
+- Once logged in as an Admin, new users can be created in the Admin Portal by clicking "Add User".  On this page as well, we have the ability to access the edit page if we want to change the Role between "User" & "Admin", the username, or associated email.  The ability to change a password has been intentionally left out since 1 account can be accessed by many users, and we don't want anyone to change passwords, since passwords are found in the video game.
 <img width="1724" alt="Screenshot 2024-09-05 at 11 30 16 AM" src="https://github.com/user-attachments/assets/12ba78f1-48c1-40a8-9c33-bb54f7b547db">
+<img width="1726" alt="Screenshot 2024-09-05 at 11 40 04 AM" src="https://github.com/user-attachments/assets/d142fcae-d47f-4fe1-b496-92d1b3cef70a">
+
+### Creating an Email
+- Once a user has been created, we can create an email to send to another user.  The email can be "sent" between any users, the objective is to allow the Admin to create email chains between 2 different users (Nerve Lab employees) so we don't need to log in as each user to send an email.
+- The email creation form includes a rich text editor give our emails the proper appearance of an email and store the email as HTML in the database.
+<img width="1725" alt="Screenshot 2024-09-05 at 11 58 44 AM" src="https://github.com/user-attachments/assets/2e9eedff-9916-4010-bad5-22c52f55f162">
