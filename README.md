@@ -31,3 +31,7 @@ For a brief background, Nerve Lab is a game studio, and their game "Vector Ball"
 <img width="1714" alt="Screenshot 2024-09-05 at 12 12 23 PM" src="https://github.com/user-attachments/assets/0053a72e-5e8a-4971-8555-eeca6bd5e1d8">
 <img width="1709" alt="Screenshot 2024-09-05 at 12 12 59 PM" src="https://github.com/user-attachments/assets/e981a133-7f23-4460-81ad-db579cf0b4da">
 
+### User Portal
+- Once a user has found a username and password from the Vector Ball PC Game, the user can log in and will be automatically redirected to the the User Email inbox page.  Here they can view emails sent by this "employee" or recieved.  Clues for in-game storyline are hidden within emails.
+<img width="1715" alt="Screenshot 2024-09-05 at 5 52 43 PM" src="https://github.com/user-attachments/assets/5bf633d1-e29b-4ab9-9e97-8ae2ea8c3aa0">
+
