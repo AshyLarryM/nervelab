@@ -97,7 +97,7 @@ export function Navbar() {
         <Link href="/">
           <div className="flex items-center cursor-pointer">
             <img src="/assets/logo/nervelablogo.png" alt="Nerve Lab Logo" className="md:h-12 h-10 pb-2" />
-            <span className="text-white font-medium text-xl"><span></span><img className='md:h-10 h-8' src='/assets/logo/nervelabs.png'/></span>
+            <span className="text-white font-medium text-xl"><span></span><img className='md:h-10 h-8' src='/assets/logo/NerveLabs.png'/></span>
           </div>
         </Link>
 
