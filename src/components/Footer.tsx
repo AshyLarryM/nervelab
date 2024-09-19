@@ -18,7 +18,7 @@ export function Footer() {
         <div className="flex flex-col items-center justify-center h-full py-8 space-y-4">
           <div className="text-xs sm:text-sm font-light text-secondary text-glow cursor-pointer">
             <p className="hover:text-white">
-              © 2024 Nerve Lab. All rights Reserved
+              © 2024 NerveLabs. All rights Reserved
             </p>
           </div>
           <div className="flex flex-wrap justify-center items-center space-x-4 text-xs sm:text-sm font-light text-secondary text-glow cursor-pointer">

@@ -16,10 +16,12 @@ const adminNavigation: NavItem[] = [
   { name: "Home", href: "/" },
   { name: "About", href: "/about" },
   { name: "Admin", href: "/admin/users" },
-  { name: "Logout", onClick: () => {
-    signOut({ callbackUrl: '/', redirect: true });
-    toast.success('Logging out...');
-  }},
+  {
+    name: "Logout", onClick: () => {
+      signOut({ callbackUrl: '/', redirect: true });
+      toast.success('Logging out...');
+    }
+  },
 ];
 
 export function AdminNavbar() {
@@ -63,7 +65,7 @@ export function AdminNavbar() {
         <Link href="/">
           <div className="flex items-center cursor-pointer">
             <img src="/assets/logo/nervelablogo.png" alt="Nerve Lab Logo" className="md:h-12 h-10 pb-2" />
-            <span className="text-white font-medium text-xl"><span></span><img className='md:h-10 h-8' src='/assets/logo/nervelab-text-rm-bg.png' /></span>
+            <span className="text-white font-medium text-xl"><span></span><img className='md:h-10 h-8' src='/assets/logo/nervelabs.png' /></span>
           </div>
         </Link>
 
