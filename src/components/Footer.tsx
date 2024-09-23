@@ -37,10 +37,17 @@ export function Footer() {
             )}
           </div>
           <div className="flex justify-center space-x-4">
-            <Link href='https://store.steampowered.com/app/2512660/VectorBall/'><FontAwesomeIcon icon={faSteam} className="h-6 sm:h-8 text-white/90 hover:text-white" /></Link>
-            <Link href='https://www.instagram.com/vectorball.exe/'><FontAwesomeIcon icon={faInstagram} className="h-6 sm:h-8 text-white/85 hover:text-white" /></Link>
-            <Link href='https://twitter.com/NerveLabGames'><FontAwesomeIcon icon={faXTwitter} className="h-6 sm:h-8 text-white/85 hover:text-white" /></Link>
+            <Link href='https://store.steampowered.com/app/2512660/VectorBall/' target="_blank" rel="noopener noreferrer">
+              <FontAwesomeIcon icon={faSteam} className="h-6 sm:h-8 text-white/90 hover:text-white" />
+            </Link>
+            <Link href='https://www.instagram.com/nervelabgames/' target="_blank" rel="noopener noreferrer">
+              <FontAwesomeIcon icon={faInstagram} className="h-6 sm:h-8 text-white/85 hover:text-white" />
+            </Link>
+            <Link href='https://x.com/NerveLabsGames' target="_blank" rel="noopener noreferrer">
+              <FontAwesomeIcon icon={faXTwitter} className="h-6 sm:h-8 text-white/85 hover:text-white" />
+            </Link>
           </div>
+
         </div>
       </div>
     </footer>
