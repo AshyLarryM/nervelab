@@ -1,38 +1,53 @@
 import { NextResponse } from 'next/server';
-import type { NextRequest } from 'next/server';
+import { NextRequest } from 'next/server';
 import { getToken } from 'next-auth/jwt';
 
 export async function middleware(request: NextRequest) {
+	const { pathname } = request.nextUrl;
 
-  const token = await getToken({ req: request, secret: process.env.NEXTAUTH_SECRET });
+	// Always allow access to the login page if unauthenticated
+	if (pathname.startsWith('/login')) {
+		const token = await getToken({ req: request, secret: process.env.NEXTAUTH_SECRET });
 
-  if (!token) {
-    console.log('No token found, redirecting to login...');
-    return NextResponse.redirect(new URL('/login', request.url));
-  }
+		// If authenticated, redirect away from login page
+		if (token) {
+			console.log('Authenticated user attempting to access /login, redirecting to /');
+			return NextResponse.redirect(new URL('/', request.url));
+		}
+		return NextResponse.next();
+	}
 
-  const isAdmin = token.role === 'Admin';
-  const isUser = token.role === 'User';
+	const token = await getToken({ req: request, secret: process.env.NEXTAUTH_SECRET });
 
-  const adminPaths = ['/admin', '/register'];
-  
-  const userPaths = ['/mail'];
+	// Redirect unauthenticated users to login
+	if (!token) {
+		console.log('No token found, redirecting to login...');
+		return NextResponse.redirect(new URL('/login', request.url));
+	}
 
-  if (adminPaths.some(path => request.nextUrl.pathname.startsWith(path)) && !isAdmin) {
-    console.log('Access to admin path denied');
-    return NextResponse.redirect(new URL('/unauthorized', request.url));
-  }
+	const isAdmin = token.role === 'Admin';
+	const isUser = token.role === 'User';
 
-  // Check if the user is trying to access a user path without the proper role
-  if (userPaths.some(path => request.nextUrl.pathname.startsWith(path)) && !isUser) {
-    console.log('Access to user path denied');
-    return NextResponse.redirect(new URL('/unauthorized', request.url));
-  }
+	const adminPaths = ['/admin', '/register'];
+	const userPaths = ['/mail'];
 
-  return NextResponse.next();
+	// Restrict admin paths to Admin role
+	if (adminPaths.some(path => pathname.startsWith(path)) && !isAdmin) {
+		console.log('Access to admin path denied');
+		return NextResponse.redirect(new URL('/unauthorized', request.url));
+	}
+
+	// Restrict user paths to User role
+	if (userPaths.some(path => pathname.startsWith(path)) && !isUser) {
+		console.log('Access to user path denied');
+		return NextResponse.redirect(new URL('/unauthorized', request.url));
+	}
+
+	// Allow access to all other routes
+	return NextResponse.next();
 }
 
 // Define the paths where the middleware should be applied
 export const config = {
-  matcher: ['/admin/:path*', '/mail/:path*'],
+	matcher: ['/admin/:path*', '/mail/:path*', '/login/:path*'],
 };
