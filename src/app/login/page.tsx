@@ -6,7 +6,9 @@ import React from 'react'
 export default function LoginPage() {
   return (
     <PageFrame showNavbar={true} showFooter={true} showParticles={true} >
-      <LoginForm />
+      <div className="flex  justify-center items-center flex-grow mt-32">
+        <LoginForm />
+      </div>
     </PageFrame>
   )
 }

@@ -1,3 +1,4 @@
+import { DynamicGreeting } from '@/components/DynamicGreeting';
 import { LoginForm } from '@/components/form/LoginForm'
 import PageFrame from '@/components/layouts/PageFrame'
 import React from 'react'
@@ -6,14 +7,14 @@ export default async function LoginPageById({ params }: { params: { id: string }
 
     console.log(params?.id);
 
-    const userName = params?.id || 'Anonymous';
+    const username = params?.id || 'Anonymous';
 
     return (
-        <PageFrame showNavbar={true} showFooter={true} showParticles={true} >
-            <div className='flex justify-center items-center mt-12'>
-                <h2 className='text-4xl text-white '>Hello {userName}</h2>
+        <PageFrame showNavbar={true} showFooter={true} showParticles={true}>
+            <div className="flex flex-col justify-center items-center flex-grow mt-32">
+                <DynamicGreeting username={username} />
+                <LoginForm />
             </div>
-            <LoginForm />
         </PageFrame>
-    )
+    );
 }
