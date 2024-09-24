@@ -8,8 +8,8 @@ import { Toaster } from "react-hot-toast";
 const inter = Orbitron({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Nerve Lab",
-  description: "Multiplayer Online Game",
+  title: "NerveLabs",
+  description: "Psychedelic Expereince",
 };
 
 const toastOptions = {
