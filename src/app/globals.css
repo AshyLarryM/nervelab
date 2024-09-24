@@ -12,6 +12,10 @@ body {
   text-shadow: 0 0 10px #12fc3d;
 }
 
+.text-glow-cyan {
+  text-shadow: 0 0 16px #27ffff;
+}
+
 .text-header-glow {
   text-shadow: 0 0 12px #aa25eddf
 }
@@ -52,6 +56,15 @@ body {
     0 0 12px rgba(250, 200, 249, 0.7),
     0 0 18px rgba(255, 147, 253, 0.7),
     0 0 24px rgba(237, 5, 233, 0.7);
+}
+
+.gradient-greeting {
+  background: linear-gradient(var(--gradient-angle), #dceffb18, #adecff1c, #0356915b, #25dbff91);
+  animation: rotation 5s linear infinite;
+  box-shadow:
+    0 0 12px rgb(164, 245, 254),
+    0 0 24px rgba(105, 245, 255, 0.7),
+    0 0 48px rgb(0, 225, 255);
 }
 
 .button-glow {
