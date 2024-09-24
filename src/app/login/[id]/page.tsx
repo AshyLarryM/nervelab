@@ -5,8 +5,6 @@ import React from 'react'
 
 export default async function LoginPageById({ params }: { params: { id: string } }) {
 
-    console.log(params?.id);
-
     const username = params?.id || 'Anonymous';
 
     return (
