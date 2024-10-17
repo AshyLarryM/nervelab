@@ -20,6 +20,10 @@ body {
   text-shadow: 0 0 12px #aa25eddf
 }
 
+.text-glow-red {
+  text-shadow: 0 0 22px #ff0000df;
+}
+
 
 /* Target the SVG element directly for transformation */
 .nav-icon {
