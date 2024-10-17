@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { UpdateUserSchema, UserSchema } from '@/lib/utils/schema';
 import { prisma } from '@/lib/utils/prismadb';
 
+export const dynamic = 'force-dynamic';
 
 export async function GET(req: NextRequest) {
   try {
