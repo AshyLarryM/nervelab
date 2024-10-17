@@ -1,3 +1,4 @@
+'use client'
 import { useQuery, useMutation, useQueryClient } from 'react-query';
 import { SafeUser } from '../types';
 
