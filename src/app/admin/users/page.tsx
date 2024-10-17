@@ -1,4 +1,4 @@
-
+'use client'
 
 import AdminPageFrame from "@/components/admin/AdminPageFrame"
 import UsersTable from "@/components/admin/UsersTable";
