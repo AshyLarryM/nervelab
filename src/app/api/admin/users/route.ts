@@ -15,7 +15,14 @@ export async function GET(req: NextRequest) {
       },
     });
     const parsedUsers = UserSchema.array().parse(users);
-    return NextResponse.json(parsedUsers, { status: 200 });
+
+    // Set no-cache headers
+    const response = NextResponse.json(parsedUsers, { status: 200 });
+    response.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+    response.headers.set('Pragma', 'no-cache');
+    response.headers.set('Expires', '0');
+    
+    return response;
   } catch (error) {
     console.error('Error fetching users:', error);
     return NextResponse.json({ error: 'Error fetching users' }, { status: 500 });

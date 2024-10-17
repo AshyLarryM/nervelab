@@ -12,12 +12,7 @@ async function fetchUsers(): Promise<SafeUser[]> {
 }
 
 export function useUsers() {
-  return useQuery<SafeUser[], Error>('users', fetchUsers, {
-    staleTime: 0,
-    cacheTime: 0,
-    refetchOnWindowFocus: true,
-    refetchOnMount: true, 
-  });
+  return useQuery<SafeUser[], Error>('users', fetchUsers);
 }
 
 async function updateUser(id: string, name: string, email: string, role: string): Promise<SafeUser> {
